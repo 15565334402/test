@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="shenku_firstpage.css">
+    <link rel="stylesheet" href="../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../file/jqueryUI/jquery-ui.min.css">
+    <link rel="stylesheet" href="../file/awesome/css/font-awesome.min.css">
+    <script src="../file/jquery-3.2.1.min.js"></script>
+    <script src="../file/highcharts/highcharts.js"></script>
+    <script src="../file/jqueryUI/jquery-ui.min.js"></script>
+    <title>神库数据库</title>
+</head>
+<body>
+   <div class="contain">
+       <div class="head">
+           <div class="logo">
+               <img src="../image/img/logo.png">
+           </div>
+           <div class="head_info">
+               <span class="wellcome">欢迎您，管理员！</span>
+               <ul class="head_open">
+                   <li><i class="fa fa-sign-out" aria-hidden="true" title="退出登录"></i></li>
+                   <li><i class="fa fa-user" aria-hidden="true" title="用户"></i></li>
+                   <li><i class="fa fa-refresh" aria-hidden="true" title="刷新"></i></li>
+                   <li><i class="fa fa-minus" aria-hidden="true" title="最小化"></i></li>
+                   <li><i class="fa fa-clone" aria-hidden="true" title="最大化"></i></li>
+                   <li><i class="fa fa-times" aria-hidden="true" title="关闭"></i></li>
+               </ul>
+           </div>
+           <div class="ball">点表
+               <div  class="show_tab">
+                   <iframe src="shenku_data_tab.html" height="200%" width="200%"></iframe>
+               </div>
+           </div>
+       </div>
+       <div class="clear"></div>
+       <div class="content">
+           <div class="left">
+               <ul class="left_menu">
+                   <li class="nav">
+                       <span>用户导航</span>
+                       <i class="fa fa-th" aria-hidden="true"></i>
+                   </li>
+                   <li class="first_page">
+                      <a>
+                          <i class="fa fa-home"></i>
+                          <span class="db_page">首页</span>
+                          <i class="fa fa-angle-left"></i>
+                      </a>
+                       <ul class="first_page_menu">
+                           <li tabid="tab1" src="../test/sk_firstPage/shenku_plat.html">
+                               <a>
+                                   <i class="fa fa-list-alt"></i>
+                                   <span>平台情况</span>
+                               </a>
+                           </li>
+                           <li tabid="tab2" src="../test/sk_firstPage/shenku_liscener.html">
+                               <a>
+                                   <i class="fa fa-pencil-square-o"></i>
+                                   <span>性能监视</span>
+                               </a>
+                           </li>
+                           <li tabid="tab3" src="../test/sk_firstPage/shenku_setting.html">
+                               <a>
+                                   <i class="fa fa-cogs"></i>
+                                   <span>系统设定</span>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="first_page">
+                       <a>
+                           <i class="fa fa-cloud"></i>
+                           <span class="db_page">数据库管理</span>
+                           <i class="fa fa-angle-left"></i>
+                       </a>
+                       <ul class="first_page_menu">
+                           <li tabid="tab4" src="../test/sk_dataBase/shenku_manage.html">
+                               <a>
+                                   <i class="fa fa-list-alt"></i>
+                                   <span>测点管理</span>
+                               </a>
+                           </li>
+                           <li tabid="tab5" src="../test/sk_dataBase/shenku_send.html">
+                               <a>
+                                   <i class="fa fa-desktop"></i>
+                                   <span>数据转发</span>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="first_page">
+                       <a>
+                           <i class="fa fa-bell"></i>
+                           <span class="db_page">警报消息</span>
+                           <i class="fa fa-angle-left"></i>
+                       </a>
+                       <ul class="first_page_menu">
+                           <li tabid="tab6" src="../test/sk_news/shenku_newsList.html">
+                               <a>
+                                   <i class="fa fa-list-ul"></i>
+                                   <span>消息列表</span>
+                               </a>
+                           </li>
+                           <li tabid="tab7" src="../test/sk_news/shenku_warning.html">
+                               <a>
+                                   <i class="fa fa-bell"></i>
+                                   <span>消息警报</span>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="first_page">
+                      <a>
+                          <i class="fa fa-bar-chart-o"></i>
+                          <span class="db_page">数据分析</span>
+                          <i class="fa fa-angle-left"></i>
+                      </a>
+                       <ul class="first_page_menu">
+                           <li tabid="tab8" src="../test/sk_dataAnalysis/shenku_trendChart.html">
+                               <a>
+                                   <i class="fa fa-line-chart"></i>
+                                   <span>趋势图</span>
+                               </a>
+                           </li>
+                           <li tabid="tab9" src="../test/sk_dataAnalysis/shenku_scatterChart.html">
+                               <a>
+                                   <i class="fa fa-area-chart"></i>
+                                   <span>散布图</span>
+                               </a>
+                           </li>
+                           <li tabid="tab10" src="../test/sk_dataAnalysis/shenku_dataQuery.html">
+                               <a>
+                                   <i class="fa fa-television"></i>
+                                   <span>数据查询</span>
+                               </a>
+                           </li>
+                           <li tabid="tab11" src="../test/sk_dataAnalysis/shenku_dataCorrection.html">
+                               <a>
+                                   <i class="fa fa-pencil-square-o"></i>
+                                   <span>数据修正</span>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="first_page">
+                      <a>
+                          <i class="fa fa-bar-chart-o"></i>
+                          <span class="db_page">高级数据分析</span>
+                          <i class="fa fa-angle-left"></i>
+                      </a>
+                       <ul class="first_page_menu">
+                           <li tabid="tab12" src="../test/sk_seniorData/shenku_seniorTrend.html">
+                               <a>
+                                   <i class="fa fa-line-chart"></i>
+                                   <span>高级趋势图</span>
+                               </a>
+                           </li>
+                           <li tabid="tab13" src="../test/sk_seniorData/shenku_seniorTime.html">
+                               <a>
+                                   <i class="fa fa-line-chart"></i>
+                                   <span>高级分时图</span>
+                               </a>
+                           </li>
+                           <li tabid="tab14" src="../test/sk_seniorData/shenku_seniorScatter.html">
+                               <a>
+                                   <i class="fa fa-area-chart"></i>
+                                   <span>高级散布图</span>
+                               </a>
+                           </li>
+                           <li tabid="tab15" src="../test/sk_seniorData/shenku_seniorThree-dimensional.html">
+                               <a>
+                                   <i class="fa fa-area-chart"></i>
+                                   <span>三维散布图</span>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="first_page">
+                       <a>
+                          <i class="fa fa-user"></i>
+                          <span class="db_page">权限管理</span>
+                          <i class="fa fa-angle-left"></i>
+                       </a>
+                       <ul class="first_page_menu">
+                           <li tabid="tab16" src="../test/sk_permissionManage/shenku_userPermission.html">
+                               <a>
+                                   <i class="fa fa-user-times"></i>
+                                   <span>用户权限</span>
+                               </a>
+                           </li>
+                           <li tabid="tab17" src="../test/sk_permissionManage/shenku_userInfo.html">
+                               <a>
+                                   <i class="fa fa-user-o"></i>
+                                   <span>用户信息</span>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="first_page">
+                       <a>
+                           <i class="fa fa-clone"></i>
+                           <span class="db_page">备份还原</span>
+                           <i class="fa fa-angle-left"></i>
+                       </a>
+                       <ul class="first_page_menu">
+                           <li tabid="tab18" src="../test/sk_dataManage/shenku_dataBackups.html">
+                               <a>
+                                   <i class="fa fa-clone"></i>
+                                   <span>数据备份</span>
+                               </a>
+                           </li>
+                           <li tabid="tab19" src="../test/sk_dataManage/shenku_dataReduction.html">
+                               <a>
+                                   <i class="fa fa-mail-reply"></i>
+                                   <span>数据还原</span>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="first_page addText" tabid="tab20" src="../test/sk_conditionManage/shenku_conditionManage.html">
+                       <a>
+                           <i class="fa fa-pencil-square-o"></i>
+                           <span class="db_page">条件管理</span>
+                       </a>
+                   </li>
+                   <li class="first_page addText" tabid="tab21" src="../test/sk_BI/shenku_BI.html">
+                      <a>
+                          <i class="fa fa-laptop"></i>
+                          <span class="db_page">BI分析</span>
+                      </a>
+                   </li>
+               </ul>
+           </div>
+           <div class="right">
+               <div id="tabs_menu">
+                   <i class="fa fa-refresh" style="color:#ddd;margin: 7px 10px;display: none;"></i>
+               </div>
+               <iframe frameborder="0" class="page" src="../test/sk_firstPage/shenku_plat.html" width="100%" height="100%"></iframe>
+           </div>
+       </div>
+  </div>
+       <script>
+           $(function () {
+               init_tab();
+               init_menu();
+               init_page_exchange();
+               tabs_menu();
+               init_tab_page();
+               init_tab_page_close();
+               init_close_page();
+               init_reload();
+               init_toggle_menu();
+               init_i_show_menu();
+           });
+
+ /****点表***/
+           function init_tab() {
+               $(".ball") .on("click",function () {
+                   $(".show_tab").toggle();
+               })
+           }
+           /****左侧菜单***/
+           function init_menu() {
+               $(".first_page a").on("click",function () {
+                   if($(this).next(".first_page_menu").css("display")=="none"){
+                       $(this).next(".first_page_menu").css("display","block");
+                       $(this).parent().siblings().find("ul.first_page_menu").css("display","none");
+                       $(this).find("i.fa-angle-left").removeClass("fa-angle-left").addClass("fa-angle-down")
+                   }else {
+                       $(this).next(".first_page_menu").css("display","none");
+                       $(this).find("i.fa-angle-down").addClass("fa-angle-left").removeClass("fa-angle-down")
+                   }
+               })
+           }
+           /*****页面切换***/
+           function init_page_exchange() {
+               $(".first_page_menu li,.addText").on("click",function () {
+                   var src=$(this).attr("src");
+                   $(".page").attr("src",src);
+               } )
+           }
+           /****横向动态添加菜单***/
+          function  tabs_menu() {
+             $(".first_page_menu li,.addText").on("click",function () {
+               var name=$(this).text();
+               var _src=$(this).attr("src");
+               var _tabid=$(this).attr("tabid");
+               var _html="<div src='"+_src+"' class='tab-active tab-"+_tabid+"' " +
+                   "style='cursor:default;float: left;padding:5px 20px;height: 30px;width: 120px;" +
+                   "border: 1px solid #d5d5d5; text-align:center;border-radius:5px 5px 0 0'>"+name+"" +
+                   "<i class='fa fa-close' style='float: right;margin: 3px -15px'></i></div>";
+                 $("#tabs_menu>div").removeClass("tab-active").addClass("init");
+                 $("#tabs_menu>i").show();
+               if($("#tabs_menu").find(".tab-"+_tabid).length>0){
+                   $("#tabs_menu .tab-"+_tabid).addClass("tab-active").removeClass("init");
+               }else {
+                   if($("#tabs_menu>div").length>10){
+
+                       var _Div ="<div id='dialog'>当前窗口数量已达上限！</div>";
+                       $("body").append(_Div);
+                       $( "#dialog" ).dialog({
+                           modal:true
+                       });
+                       $(".ui-widget-header").css("background","#212733")
+                   }else {
+                       $("#tabs_menu").append(_html);
+                   }
+               }
+             })
+          }
+          /****横向菜单页面切换***/
+          function init_tab_page() {
+                  $("#tabs_menu").on("click","div",function () {
+                      var SRC=$(this).attr("src");
+                      $(this).removeClass("init").addClass("tab-active").siblings("div").removeClass("tab-active").addClass("init");
+                      $(".page").attr("src",SRC);
+              })
+          }
+          /***横向关闭页面***/
+          function init_tab_page_close() {
+              $("#tabs_menu").on("click","i.fa-close",function () {
+                 if($(this).parent().siblings("div").length == 0){
+                     $("#tabs_menu .fa-refresh").hide();
+                     $(".page").attr("src","../test/sk_firstPage/shenku_plat.html")
+                 }
+                  console.log($("#tabs_menu>div.tab-active").length )
+                  if($(this).parent().siblings("div").length == 1){
+                      $(this).parent().siblings("div").addClass("tab-active").removeClass("init");
+                      var active_src = $(this).parent().siblings("div").attr("src");
+                      $(".page").attr("src",active_src);
+                  }
+                 if($(this).parent().hasClass("tab-active")) {
+                     var page_src = $(this).parent().prev().attr("src")
+                     $(".page").attr("src", page_src);
+                     $(this).parent().prev("div").addClass("tab-active").removeClass("init");
+                     $(this).parent().remove();
+                 }else{
+                     $(this).parent().remove();
+                 }
+                 if($("#tabs_menu>div.tab-active").length == 0){
+                   $(".page").attr("src","")
+                 }
+                  return false;
+              })
+          }
+          /***关闭页面*****/
+          function init_close_page() {
+              $(".head_open .fa-times").on("click",function () {
+                 window.close()
+              })
+          }
+          /***页面刷新***/
+          function init_reload() {
+              $("#tabs_menu .fa-refresh").on("click",function () {
+                  $(".page").attr("src", $(".page").attr("src"))
+              })
+          }
+          /***左侧菜单收缩***/
+          function  init_toggle_menu() {
+              $(".fa-th").on("click",function () {
+                  if(parseInt($(".left").css("width"))>50){
+                      $(".first_page").find("a").css("height","50px");
+                      $(".left").css("width","50px");
+                      $(".left").find("span,.fa-angle-left").hide();
+                      $(".left").find(".fa-angle-down").hide();
+                      $(".left i").addClass("toggle_menu");
+                      $(".right").css({"width":"1870px","left":"50px"})
+                  }else {
+                      $(".left").css("width","228px");
+                      $(".left").find("span,.fa-angle-left").show();
+                      $(".left").find(".fa-angle-down").show();
+                      $(".left i").removeClass("toggle_menu");
+                      $(".right").css({"width":"88%","left":"228px"})
+                  }
+
+              })
+          }
+          /***左侧小图标显示菜单***/
+          function  init_i_show_menu() {
+                  $(".first_page").on("mouseover",function () {
+                          if (parseInt($(".left").css("width")) == 50){
+                              $(this).find(".db_page").show().addClass("first_page_menu_toggle").removeClass("hover");
+                              $(this).find("ul").show().addClass("ul");
+                              $(this).find("ul a").show().addClass("hover");
+                              $(this).find("ul span").show().addClass("span_show")
+
+                          }else {
+                              $(this).find(".db_page").show().removeClass("first_page_menu_toggle").removeClass("hover");
+                              $(this).find("ul").hide().removeClass("ul");
+                              $(this).find("ul a").show().removeClass("hover");
+                              $(this).find("ul span").show().removeClass("span_show")
+                          }
+                      });
+              $(".first_page").on("mouseout",function () {
+                  if (parseInt($(".left").css("width")) == 50){
+                      $(this).find(".db_page").hide().removeClass("first_page_menu_toggle").removeClass("hover");
+                      $(this).find("ul").hide();
+                      $(this).find("ul a").hide().removeClass("hover");
+                      $(this).find("ul span").hide().removeClass("span_show")
+                  }
+
+              })
+          }
+       </script>
+</body>
+</html>

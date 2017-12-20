@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../file/jquery-3.2.1.min.js"></script>
+    <title>轮播图</title>
+</head>
+<style>
+    *{padding: 0;margin: 0;}
+    .wrapper{width: 755px;height: 503px;position: absolute;top: 50%;left: 50%;margin: -250px -377px;font-size: 20px;}
+    ul{list-style: none}
+    .img>ul>li{float: left;}
+    .img>ul>li>img{position: absolute;top:0;left: 0;}
+    .circle{position: absolute;top: 85%;left: 31%;}
+    .circle>ul>li{float: left;width: 20px; height: 20px;border: 1px solid #2b2b2b;border-radius: 50%;margin: 5px;cursor: pointer;}
+    .active{background-color: #f36a5a}
+    .btn_group{position: absolute;top: 45%;width: 100%}
+    .btn{width: 40px;height: 60px;background: rgba(0,0,0,.4);color: white;line-height: 60px;text-align: center;cursor: pointer;}
+    .btn:hover{background: rgba(0,0,0,.7);}
+    .btn_pre{float: left;}
+    .btn_next{float: right;}
+</style>
+<body>
+    <div class="wrapper">
+        <div class="img">
+            <ul class="ig">
+                <li><img src="../image/img/item-01.jpg"> </li>
+                <li><img src="../image/img/item-02.jpg"> </li>
+                <li><img src="../image/img/item-03.jpg"> </li>
+                <li><img src="../image/img/item-04.jpg"> </li>
+                <li><img src="../image/img/item-05.jpg"> </li>
+                <li><img src="../image/img/item-06.jpg"> </li>
+                <li><img src="../image/img/item-07.jpg"> </li>
+            </ul>
+        </div>
+        <div class="circle">
+            <ul class="tabs">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="btn_group">
+            <div class="btn btn_pre">&lt</div>
+            <div class="btn btn_next">&gt</div>
+        </div>
+    </div>
+    <script>
+        //定义全局变量和定时器
+        var i = 0 ;
+        var timer;
+        $(document).ready(function(){
+            //用jquery方法设置第一张图片显示，其余隐藏
+            $('.ig li').eq(0).show().siblings().hide();
+            //调用showTime()函数（轮播函数）
+            showTime();
+
+            //当鼠标经过下面的圆点时，触发两个事件（鼠标悬停和鼠标离开）
+            $('.tabs li').hover(function(){
+                //获取当前i的值，并显示，同时还要清除定时器
+                i = $(this).index();
+                Show();
+                clearInterval(timer);
+            },function(){
+                //鼠标离开定时器打开
+                showTime();
+            });
+
+            //当鼠标经过图片时，触发两个事件（鼠标悬停和鼠标离开）
+            $('.ig li').hover(function(){
+                //获取当前i的值，并显示，同时还要清除定时器
+                i = $(this).index();
+                Show();
+                clearInterval(timer);
+            },function(){
+                //鼠标离开定时器打开
+                showTime();
+            });
+            //鼠标点击左侧的箭头
+            $('.btn_pre').click(function(){
+                clearInterval(timer);
+                if(i == 0){
+                    i = 7;//注意此时i的值
+                }
+                i--;
+                Show();
+                showTime();
+            });
+
+            //鼠标点击右侧的箭头
+            $('.btn_next').click(function(){
+                clearInterval(timer);
+                if(i == 6){
+                    i = -1;//注意此时i的值
+                }
+                i++;
+                Show();
+                showTime();
+            });
+
+        });
+        //创建一个showTime函数
+        function showTime(){
+            //定时器
+            timer = setInterval(function(){
+                //调用一个Show()函数
+                Show();
+                i++;
+                //当图片是最后一张的后面时，设置图片为第一张
+                if(i==7){
+                    i=0;
+                }
+            },2000);
+        }
+        //创建一个Show函数
+        function Show(){
+            //在这里可以用其他jquery的动画
+            $('.ig li').eq(i).fadeIn(300).siblings().fadeOut(300);
+            //给.tab创建一个新的Class为其添加一个新的样式，并且要在css代码中设置该样式
+            $('.tabs li').eq(i).addClass('active').siblings().removeClass('active');}
+    </script>
+</body>
+</html>

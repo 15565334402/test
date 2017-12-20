@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../file/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../file/jqueryUI/jquery-ui.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/jqueryUI/jquery-ui.min.js"></script>
+    <title>用户权限</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    html,body{width: 100%;height: 904px;background-color: #e7e7e7;}
+    .user_content{margin: 25px;width: 97.5%;height: 880px;}
+    .left{float: left;width: 56%;height: 100%;}
+    .right{float: left;width: 42%;height: 100%;margin-left: 25px;}
+    .user_define{width:100%;height: 49%;margin-bottom: 25px;}
+    .panel>.panel-heading{background-color: #485666;border-radius: 5px 5px 0 0;height: 40px;}
+    .panel h3{color:#fff;font-weight: bold;float: left;}
+    .panel>.panel-heading>i{color: #fff;float: right;font-size: 1.5em;}
+    .table-bordered>thead>tr>th{background-color: #d9dee2;border: 1px solid #ccc;}
+    .table{margin-bottom: 0;}
+    .table i{cursor: pointer;color: #66afe9;}
+    .black{height: 210px;border: 1px solid #ccc;border-top: 0;}
+    .user_manage{width:100%;height: 49%;}
+    .user_manage .black{height: 230px;}
+    .footer_left{float: left;margin-top: 20px;}
+    .footer_left>div{float: left;margin-right: 15px;}
+    .footer_left input{width: 35px;height: 20px;}
+    .footer_right{float: right;}
+    .user_selector{width: 100%;height: 100%}
+    .user_selector .panel-body{height: 90%;}
+    .panel-body {overflow: auto;}
+</style>
+<body>
+<div class="user_content">
+    <div class="left">
+        <div class="user_define panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">用户组定义</h3>
+                    <i class="fa fa-plus"></i>
+                </div>
+                <div class="panel-body">
+                   <table class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                          <th></th>
+                          <th>名称</th>
+                          <th>备注</th>
+                          <th>操作</th>
+                      </tr>
+                      </thead>
+                       <tr>
+                           <td><input type="radio" checked="checked"></td>
+                           <td>管理员组</td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td><input type="radio"></td>
+                           <td>标准组</td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                   </table>
+                    <div class="black"></div>
+                </div>
+        </div>
+        <div class="user_manage panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">成员组-管理组</h3>
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>账号</th>
+                        <th>名称</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>admin</td>
+                        <td></td>
+                        <td></td>
+                        <td><i class="fa fa-trash"></i></td>
+                    </tr>
+                </table>
+                <div class="black"></div>
+                <div class="footer">
+                    <div class="footer_left">
+                        <div>共1条</div>
+                        <div>每页<input type="text" value="50">条 </div>
+                        <div>第<input type="text" value="1">/1页</div>
+                    </div>
+                    <div class="footer_right">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#"><span>&lt</span></a></li>
+                                <li><a href="#"><span>&gt</span></a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="user_selector panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">功能选择-管理员组</h3>
+                <i class="fa fa-floppy-o" title="保存当前权限功能"></i>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>查看</th>
+                        <th>修改</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>1</td>
+                        <td>首页</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>系统概况</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>性能监测</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>系统设定</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>数据库管理</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>测点管理</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>数据转发</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>警报消息</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>消息列表</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>消息警报</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>数据分析</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>趋势图</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>散布图</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>数据查询</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>数据修正</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>高级数据分析</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>趋势图</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>分时趋势图</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>散布图</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>三维散布图</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>权限管理</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>用户权限</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>用户信息</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>备份还原</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>数据备份</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>数据还原</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>条件管理</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td>BI分析</td>
+                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" checked="checked"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

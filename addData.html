@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../file/jquery-3.2.1.min.js"></script>
+    <title>动态添加和删除数据</title>
+</head>
+<style type="text/css">
+    table{
+        margin:auto auto;
+        background-color:#9FC;}
+    td{
+        width:80px;}
+</style>
+<body>
+<form id="info" method="post">
+    姓名：<input type="text" id="user">
+    班级：<input type="text" id="greed">
+    年龄：<input type="text" id="age">
+    <input type="button" id="btn1" value="添加">
+</form>
+<br>
+<br>
+<br>
+<table id="tab" border="1">
+    <tr id="t1">
+        <td>姓名</td>
+        <td>班级</td>
+        <td>年龄</td>
+        <td>是否删除</td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(document).ready(function (){
+
+        $("#btn1").click(function (){
+            //创建tr节点
+            var $tr=$("<tr></tr>");
+            //遍历获取输入的内容
+            $("#info input:text").each(function (index,domEle){
+                //添加td节点
+                var $td=$("<td></td>");
+                //将内容循环添加到创建好的TD中
+                $td.append($(domEle).val());
+                //将td添加到创建好的TR 中
+                $td.appendTo($tr);
+            });
+            //创建TD--删除
+            var $td=$("<td><a href='#' class='del'>delete</a></td>");
+            //将内容循环添加到创建好的TD中
+            $td.appendTo($tr);
+            $tr.appendTo("#tab");
+
+            //执行删除操作
+            $(".del").click(function (){
+                //alert("@@@@@@@@@@@@");
+                $(this).parent().parent().remove();
+
+            });
+        });
+
+    });
+</script>
+</body>
+</html>

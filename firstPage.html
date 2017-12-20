@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../file/font-awesome.min.css">
+    <script src="../file/jquery-3.2.1.min.js"></script>
+    <script src="../file/jquery-ui.min.js"></script>
+    <title>firstPage</title>
+</head>
+<style>
+    *{
+        padding:0;
+        margin:0;
+    }
+    html,body,.contain{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+   .contain{
+       background: url("../image/img/background-image.png");
+       background-size: 100% 100%;
+       background-repeat: no-repeat;
+       position: relative;
+   }
+    .left{
+        position: absolute;
+        left: 15%;
+        right: 30%;
+        top: 25%;
+        bottom: 24%;
+        width: 51%;
+        height: 51%;
+        overflow: hidden;
+    }
+    .right{
+        position: absolute;
+        top: 27%;
+        right: 15%;
+        left: 70.3%;
+        bottom: 25%;
+        width: 200px;
+    }
+    .totleMenu{
+        margin-bottom: 70px;
+        margin-right: 0;
+    }
+    ul,li{
+        padding:0;
+        margin:0;
+        width: 100%;
+    }
+    .menuInfo li{
+        list-style: none;
+        height: 50px;
+        line-height: 50px;
+        margin-bottom: 20px;
+        text-align: center;
+        background: white;
+        color: black;
+        font-family: "Microsoft YaHei UI";
+        font-size: 14px;
+        font-weight: bold;
+    }
+   li:hover{
+        color: #eea236;
+    }
+    .page1,.page3{
+        width: 100%;
+        height: 100%;
+    }
+     .page_contain{
+        width: 100%;
+        height: 100%;
+    }
+    .page1 .text {
+        height: 100%;
+        width: 50%;
+        background: #ffffff;
+        float: left;
+    }
+    .page1 .text1{
+        font-family: 华文黑体;
+        font-size: 34px;
+        border-left: 2px solid #000000;
+        padding-left: 15px;
+        margin-left: 40px;
+        margin-top: 100px;
+    }
+    .page1 .text2{
+        margin-left: 40px;
+        margin-top: 30px;
+        font-size: 16px;
+    }
+    .page1 .btn{
+        width: 150px;
+        height: 40px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 40px;
+        margin-top: 20px;
+    }
+    .page1 .btn:hover{
+         color: #eea236;
+         background: #fff;
+         border-color: #eea236;
+     }
+    .page1 .photo{
+         background: url("../image/img/home-image.jpg");
+         background-size: 100% 100%;
+         background-repeat: no-repeat;
+         float: left;
+         width: 50%;
+         height: 100%;
+     }
+
+    .page3 .text {
+        height: 45%;
+        width: 100%;
+        background: #ffffff;
+    }
+    .page3 .text1{
+        font-family: 华文黑体;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 30px;
+    }
+    .page3 .line{
+        text-align: center;
+        width: 80px;
+        height: 20px;
+        border-bottom: 2px solid #000000;
+    }
+    .page3 .text2 {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 16px;
+    }
+    .page3 .photo{
+        background: url("../image/img/about-image.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 55%;
+    }
+    .page4{
+        position: relative;
+        top:5%;
+        bottom: 13%;
+        width: 100%;
+        height: 82%;
+        background: #fff;
+    }
+    .page4 .photo{
+        height: 83.5%;
+        padding: 40px 85px;
+        overflow: hidden;
+    }
+    .page4 .photo img{
+        float: left;
+        padding-left: 10px;
+    }
+</style>
+<body>
+    <div class="contain">
+        <div class="left">
+           <div class="page1">
+               <div class="page_contain">
+                   <div class="text">
+                       <div class="text1">
+                           CLEAN, CREATIVE &<br> UNIQUE <span style="color: #eea236">SHORT</span>
+                       </div>
+                       <div class="line"></div>
+                       <div class="text2">
+                           <i>We produce high quality HTML Website Templates for<br> you at absolutely FREE of charge.</i>
+                       </div>
+                       <input class="btn btn-default" value="DISCOVER MORE">
+                   </div>
+                   <div class="photo"></div>
+               </div>
+           </div>
+            <div class="page2"></div>
+            <div class="page3">
+                <div class="page_contain">
+                    <div class="text">
+                        <div class="text1">
+                            MORE INFO ABOUT <span style="color: #eea236">SHORT</span>
+                        </div>
+                        <div class="text2">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc purus ligula, ullamcorper id velit id, vestibulum auctor <br>
+                               sapien. Sed quis mauris eget sem imperdiet rhoncus hendrerit sed neque.<br><br>
+                                Praesent dictum at erat consectetur imperdiet. Vivamus lobortis eros quis elementum egestas. Fusce sed lorem sed <br>
+                                tellus convallis pulvinar non eget erat. Nunc sapien mauris, molestie sed interdum vel, pharetra et metus.
+                        </div>
+                    </div>
+                    <div class="photo"></div>
+                </div>
+            </div>
+            <div class="page4">
+                <div class="photo">
+                    <img src="../image/img/project-item-01.jpg">
+                    <img src="../image/img/project-item-02.jpg">
+                    <img src="../image/img/project-item-03.jpg">
+                    <img src="../image/img/project-item-04.jpg">
+                    <img src="../image/img/project-item-05.jpg">
+                    <img src="../image/img/project-item-06.jpg">
+                    <img src="../image/img/project-item-07.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="right">
+             <div class="totleMenu">
+                 <img src="../image/img/logo.png">
+             </div>
+             <div class="menu">
+                 <ul class="menuInfo">
+                     <li class="menu-down" cls="page1">
+                         WELCOME INTRO
+                     </li>
+                     <li class="menu-down" cls="page2">
+                         ABOUT US
+                     </li>
+                     <li class="menu-down" cls="page3">
+                         OUR PROJECTS
+                     </li>
+                     <li class="menu-down" cls="page4">
+                         CONTACT US
+                     </li>
+                 </ul>
+             </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $(function(){
+      $(".right li").on("click",function () {
+          var _cls=$(this).attr("cls");
+          var _thatdiv=$("."+_cls);
+          _thatdiv.show().siblings().hide();
+      })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../shenku_firstpage.css">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../file/jqueryUI/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../file/awesome/css/font-awesome.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/jqueryUI/jquery-ui.min.js"></script>
+    <script src="../../file/highcharts/highcharts.js"></script>
+    <title>性能监视</title>
+</head>
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body,.right_page
+    {
+        width: 100%;
+        height: 100%;
+    }
+    .right_content{
+        position: absolute;
+        top:0;
+        left:0;
+        bottom: 0;
+        width: 100%;
+        height: 904px;
+        background-color: #e7e7e7;
+    }
+    .right_content .serch_info{
+        height: 50px;
+    }
+    .right_content .pagination a{
+        background-color: #e7e7e7;
+        padding: 0.5em;
+    }
+    .right_content .pagination a:hover{
+        background-color: #66afe9;
+    }
+    .right_content .serch_info nav{
+        float: left;
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 34px;
+    }
+    .right_content .serch_info nav ul{
+        margin: 0;
+        padding: 0;
+    }
+    .right_content .input-group{
+        float: left;
+        margin-top: 10px;
+        margin-left: 30px;
+        width: 300px;
+    }
+     select{
+        height: 25px;
+        border-radius: 5px;
+        padding: 0 18px 0 14px;
+        -webkit-appearance:none;
+         background-color: #e7e7e7;
+    }
+    .fa-caret-down{
+        box-sizing: content-box;
+        margin: -18px;
+        padding: 5px;
+        color: #5e5e5e;
+        border-left: 1px solid #ccc;
+    }
+    .input-group select option{
+        border-bottom-right :1px solid #ccc;
+    }
+    .right_content .pagination i{
+        color:#66afe9;
+        font-size: 1.5em;
+    }
+    .right_content .pagination i:hover{
+        color:#fff;
+    }
+    .tab{
+        width: 100%;
+        height:20%;
+        margin-left: 10px;
+    }
+    .tabs{
+        float: left;
+        width: 90%;
+        height: 100%;
+        background-color: #fff;
+        border:1px solid #ccc;
+    }
+    .table-bordered>thead>tr>th{
+        background-color: #d9dee2;
+        border: 1px solid #ccc;
+    }
+  .tab>.text{
+      position: absolute;
+      top:15%;
+      left: 45%
+   }
+    .time{
+        height: 100%;
+        width: 9%;
+        float: right;
+        margin-left: 10px;
+    }
+    .time>div{
+        cursor: pointer;
+        width: 80%;
+        height: 37px;
+        line-height: 37px;
+        border: 1px solid #66afe9;
+        border-radius: 5px;
+        text-align: center;
+        color:#66afe9;
+        background-color: #fff;
+        margin: 6px;
+    }
+    .active{
+        background-color: #66afe9;
+        color:#fff;
+    }
+    .time>div:hover{
+        background-color: #66afe9;
+        color:#fff;
+    }
+    .content_one{
+        width: 100%;
+        height: 65%;
+        background-color: #fff;
+        margin: 20px 10px 0 10px;
+    }
+    .content_img{
+        width: 90%;
+        height: 96%;
+        margin: 10px 0 10px 10px;
+        background-color:#353F4B;
+        float: left;
+    }
+    .content_img>.text{
+        position: absolute;
+        top:67%;
+        left: 40%;
+        color: #ccc;
+
+    }
+    .content_img>i{
+        position: absolute;
+        top:49%;
+        left: 40%;
+        color: #ccc;
+        font-size: 13em;
+    }
+    .content_one>.select{
+        float:left;
+        width: 9%;
+        height: 96%;
+        margin-top: 10px;
+        background-color: #d9dee2;
+    }
+    .select>select{
+        margin-top: 6px;
+        margin-left: 10px;
+        width: 100px;
+        background-color: #d9dee2;
+    }
+    .select>.fa-caret-down{
+        padding: 5px ;
+        margin-left: -27px;
+    }
+    .scroll{
+        width: 100%;
+        height: 45px;
+        margin: 0 10px 0 10px;
+    }
+    .time_scrollBar{
+        float: left;
+        width: 91%;
+        height: 100%;
+    }
+    .scroll>.select{
+        float:left;
+        width: 9%;
+    }
+    .scroll>.select>select{
+        background-color: #e7e7e7;
+    }
+    #dialog{display: none;}
+    #dialog ul{list-style: none;margin-left: 10px;}
+    #dialog i{border: 0;margin: 0;font-size: 1.5em;cursor: pointer;}
+    #dialog ul>li.dialog_itmes{border-bottom: 1px solid #ccc;}
+    #dialog ul>li>ul{margin-left: 36px;display: none;}
+    .ui-widget-header{background-color: #485666;color: #fff;}
+    .ui-widget-content{border: 0;}
+    .ui-dialog-buttonset .ui-button{background-color: #007fff;color: #fff;font-weight: bold;}
+</style>
+<body>
+<div class="right_page">
+    <div class="right_content">
+        <div class="serch_info">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li><a href="#"><i class="fa fa-arrow-circle-left" title="上个时间段"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-arrow-circle-right" title="下个时间段"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-sliders" title="选择性能参数"></i> </a></li>
+                </ul>
+            </nav>
+            <div class="input-group">
+                 <select>
+                     <option>均值</option>
+                     <option>最小值</option>
+                     <option>最大值</option>
+                 </select>
+                <i class="fa fa-caret-down"></i>
+            </div>
+        </div>
+        <div class="tab">
+            <div class="text">没有数据</div>
+            <div class="tabs">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>显示</th>
+                        <th>标签</th>
+                        <th>颜色</th>
+                        <th>设备名称</th>
+                        <th>实时值</th>
+                        <th>游标值</th>
+                        <th>上限</th>
+                        <th>下限</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="time">
+                <div>最近30分</div>
+                <div>最近1天</div>
+                <div>最近7天</div>
+                <div class="active">自定义</div>
+            </div>
+            <div class="clear" style="clear: both"></div>
+        </div>
+        <div class="content_one">
+            <div class="content_img">
+                <i class="fa fa-plus-square-o"></i>
+                <p class="text">在设备列表中选择设备</p>
+            </div>
+            <div class="select">
+                <select>
+                    <option>自适应</option>
+                    <option>系统预设</option>
+                    <option>自定义</option>
+                </select>
+                <i class="fa fa-caret-down"></i>
+            </div>
+        </div>
+        <div class="scroll">
+            <div class="time_scrollBar"></div>
+            <div class="select">
+                <select>
+                    <option>自定义</option>
+                    <option>近十年</option>
+                    <option>近三年</option>
+                    <option>本年</option>
+                    <option>本季度</option>
+                    <option>上月</option>
+                    <option>本月</option>
+                    <option>上周</option>
+                    <option>最近七天</option>
+                    <option>最近三天</option>
+                    <option>最近30分</option>
+                </select>
+                <i class="fa fa-caret-down"></i>
+            </div>
+        </div>
+    </div>
+    <div id="dialog" title="设备列表">
+         <ul>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>CPU</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>用户空间CUP占用百分比（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>内核空间CUP占用百分比（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>等待输入输出CUP占用百分比（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>硬中断CUP占用百分比（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>软中断CUP占用百分比（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>CUP占用百分比（%）</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>内存</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>内存总量（MB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>写入缓存使用量（MB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>读取缓存使用量（MB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>共享内存使用量（MB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>剩余内存量（MB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>可用内存量（MB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>内存使用率（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>内存使用率（含缓存）（%）</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>磁盘</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>新建进程数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>磁盘空间剩余量（GB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>磁盘空间使用量（GB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>磁盘空间总量（GB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>磁盘空间使用率（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>文件节点剩余量（M）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>文件节点总量（M）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>文件节点使用率（%）</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>系统负载</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>1分钟系统平均负载</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>5分钟系统平均负载</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>15分钟系统平均负载</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>运行队列的任务数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>系统中活跃的任务数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>1分钟系统平均负载率（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>5分钟系统平均负载率（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>15分钟系统平均负载率（%）</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>SWAP</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>SWAP换入内存量（GB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>SWAP换出内存量（GB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>SWAP空间总量（GB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>SWAP空间使用率（%）</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>TCP通信</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>主动连接数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>被动连接数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>接受分片数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>发送分片数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>连接关闭数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>连接失败数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>当前连接数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>重传次数</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>UDP通信</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>接收数据报数量</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>发送数据报数量</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>无主数据报数量</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>接收失败数据报数量</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>网络流量</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>接收数据量（KB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>发送数据量（KB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>接收数据包数量</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>发送数据包数量</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>错误数据包数量</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>丢弃数据包数量</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>IO读写</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>每秒读取请求合并数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>每秒写入请求合并数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>每秒读取请求数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>每秒写入请求数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>每秒读取扇区数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>每秒写入扇区数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>I/O操作字节数（KB）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>I/O列队长度</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>I/O响应时间</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>I/O服务时间</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>每秒I/O请求数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>I/O处理时间百分比</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>磁盘读取数据量</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>磁盘写入数据量</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>磁盘读写数据量</span>
+                     </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>进程</span>
+                 <ul>
+                      <li>
+                         <input type="checkbox">
+                         <span>进程切换次数</span>
+                      </li>
+                      <li>
+                         <input type="checkbox">
+                         <span>新建进程数</span>
+                      </li>
+                 </ul>
+             </li>
+             <li class="dialog_itmes">
+                 <i class="fa fa-caret-right"></i>
+                 <input type="checkbox">
+                 <span>实时历史库</span>
+                 <ul>
+                     <li>
+                         <input type="checkbox">
+                         <span>测点总数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>测点使用数</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>测点使用率（%）</span>
+                     </li>
+                     <li>
+                         <input type="checkbox">
+                         <span>磁盘使用率（%）</span>
+                     </li>
+                 </ul>
+             </li>
+         </ul>
+    </div>
+</div>
+<script>
+   $(function () {
+       init_dialog();
+       init_ul_toggle();
+       init_select();
+   });
+    function init_dialog() {
+        $(".fa-sliders").on("click",function () {
+            $("#dialog").dialog({
+                modal:true,
+                height:'400',
+                width:'500',
+                buttons: {
+                    "确定": function() {
+                        $( this ).dialog( "close" );
+                    },
+                    "关闭": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            })
+        })
+    }
+    function init_ul_toggle() {
+        $("#dialog i").on("click",function () {
+            if( $(this).siblings("ul").css("display")=="none"){
+                $(this).siblings("ul").css("display","block");
+                $(this).removeClass("fa-caret-right").addClass("fa-caret-down");
+            }else {
+                $(this).siblings("ul").css("display","none");
+                $(this).addClass("fa-caret-right").removeClass("fa-caret-down");
+            }
+        })
+    }
+    function init_select() {
+        $(".right_content .fa-caret-down").on("click",function () {
+            $(this).prev().children("option").toggle();
+        })
+    }
+</script>
+</body>
+</html>

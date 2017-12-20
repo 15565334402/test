@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../shenku_firstpage.css">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../file/awesome/css/font-awesome.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/highcharts/highcharts.js"></script>
+    <title>数据备份</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    html,body{width: 98.3%;height:900px;background-color: #e7e7e7}
+    .setting_content{width:100%;margin: 30px;}
+    .settings{width: 100%;height: 200px;background-color: #fff;margin-bottom: 25px;}
+    .settings:last-child{margin-bottom: 0;}
+    .header{background-color: #485666;border-radius: 5px 5px 0 0;}
+    .header>span{color: #fff;display: inline-block;font-weight: bold;padding: 10px;}
+    .aside{margin: 15px 10px;width: 100%;}
+    .content1 span.text{font-weight: bold;}
+    .content1>.input{border-radius: 5px;border: 1px solid #ccc;width: 300px;}
+    .content1>div{margin-bottom: 10px;}
+    .btn{margin-left: 30px;}
+</style>
+<body>
+<div class="setting_content">
+    <section class="settings">
+        <div class="header">
+            <span>完全备份</span>
+        </div>
+        <div class="aside">
+            <div class="content1">
+                <span class="text">【备份路径】</span>
+                <input type="text" class="input">
+                <span class="btn btn-primary">立即备份</span>
+            </div>
+        </div>
+        <div class="aside">
+            <div class="content1">
+                <input type="checkbox">
+                <span>定时备份</span>
+            </div>
+        </div>
+    </section>
+    <section class="settings">
+        <div class="header">
+            <span>增量备份</span>
+        </div>
+        <div class="aside">
+            <div class="content1">
+                <span class="text">【备份路径】</span>
+                <input type="text" class="input">
+                <span class="btn btn-primary">立即备份</span>
+            </div>
+        </div>
+        <div class="aside">
+            <div class="content1">
+                <input type="checkbox">
+                <span>定时备份</span>
+            </div>
+        </div>
+    </section>
+    <section class="settings">
+        <div class="header">
+            <span>手工备份</span>
+        </div>
+        <div class="aside">
+            <div class="content1">
+                <span class="text" class="input">【备份路径】</span>
+                <input type="text">
+                <span class="btn btn-primary">立即备份</span>
+                <span class="btn btn-primary">设置备份</span>
+            </div>
+        </div>
+    </section>
+    <section class="settings">
+        <div class="header">
+            <span class="text">备份状态</span>
+        </div>
+        <div class="aside">
+            <div class="content1">
+                <div class="text">系统正常运行</div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

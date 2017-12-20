@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../shenku_firstpage.css">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../file/awesome/css/font-awesome.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/highcharts/highcharts.js"></script>
+    <title>数据查询</title>
+</head>
+<style type="text/css">
+    *{margin: 0;padding: 0;}
+    html,body,.right_page {width: 100%;height: 100%;}
+    .right_content{position: absolute;top:0;left:0;bottom: 0;width: 100%;height: 904px;background-color: #e7e7e7;}
+    .right_content .serch_info{height: 50px;}
+    nav{margin-right: 30px;}
+    .right_content .pagination a{background-color: #e7e7e7;padding: 0.5em;color: #2b2b2b}
+    .right_content .icon a:hover{background-color: #66afe9;}
+    .right_content .input a:hover{background-color: #e7e7e7;}
+    .right_content .input a input{border: 0;width: 40px;height: 20px;}
+    .right_content .input a.i_input{background-color: #fff;}
+    .right_content .input a.s_input{background-color: #fff;}
+    .right_content .input a.s_input input{width: 250px;color: #8c8c8c;font-weight: bold;}
+    .right_content .serch_info nav{float: left;margin-top: 5px;margin-left: 10px;height: 34px;}
+    .right_content .serch_info nav ul{margin: 0;padding: 0;}
+    .right_content .input-group{float: left;margin-top: 10px;margin-left: 30px;width: 300px;}
+    select{height: 20px;border:0;background-color: #e7e7e7;}
+    .fa-caret-down{box-sizing: content-box;margin: -18px;padding: 5px;color: #5e5e5e;border-left: 1px solid #ccc;}
+    .right_content .pagination i{color:#66afe9;font-size: 1.5em;}
+    .right_content .pagination i:hover{color:#fff;}
+    .tab{width: 100%;height:20%;margin-left: 10px;}
+    .tabs{float: left;width: 90%;height: 100%;background-color: #fff;border:1px solid #ccc;}
+    .table-bordered>thead>tr>th{background-color: #d9dee2;border: 1px solid #ccc;}
+    .tab>.text{position: absolute;top:15%;left: 45%}
+    .time{height: 100%;width: 9%;float: right;margin-left: 10px;}
+    .time>div{cursor: pointer;width: 80%;height: 37px;line-height: 37px;border: 1px solid #66afe9;border-radius: 5px;text-align: center;color:#66afe9; background-color: #fff;margin: 6px;}
+    .active{background-color: #66afe9;color:#fff;}
+    .time>div:hover{background-color: #66afe9;color:#fff;}
+    .text_blod{margin: 10px;}
+    .text_blod>span{font-weight: bold;}
+    .content_one{width: 100%;height: 65%;background-color: #fff;margin: 0 10px;}
+    .scroll{width: 100%;height: 45px;margin: 0 10px 0 10px;}
+    .footer_left{float: left;margin-top: 20px;}
+    .footer_left>div{float: left;margin-right: 15px;}
+    .footer_left input{width: 35px;height: 20px;}
+    .footer_right{float: right;}
+</style>
+<body>
+<div class="right_page">
+    <div class="right_content">
+        <div class="serch_info">
+            <nav aria-label="Page navigation" class="icon">
+                <ul class="pagination">
+                    <li><a href="#"><i class="fa fa-folder-open-o" title="加载文件"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-floppy-o" title="保存文件"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-upload" title="导出"></i> </a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Page navigation" class="input">
+                <ul class="pagination">
+                    <li><a href="#">间隔</a></li>
+                    <li><a href="#" class="i_input"><input type="text" value="30"></a></li>
+                    <li><a href="#"><select>
+                        <option>毫秒</option>
+                        <option selected="selected">秒</option>
+                        <option>分</option>
+                        <option>时</option>
+                        <option>天</option>
+                        <option>周</option>
+                        <option>月</option>
+                    </select></a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Page navigation" class="input">
+                <ul class="pagination">
+                    <li><a href="#">条件</a></li>
+                    <li><a href="#" class="s_input"><input type="text" value="查询条件或公式"></a></li>
+                    <li><a href="#">清除</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="tab">
+            <div class="text">没有数据</div>
+            <div class="tabs">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>点标签</th>
+                        <th>点名称</th>
+                        <th>上限</th>
+                        <th>下限</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="time">
+                <div>最近30分</div>
+                <div>最近1天</div>
+                <div>最近7天</div>
+                <div class="active">自定义</div>
+            </div>
+            <div class="clear" style="clear: both"></div>
+        </div>
+        <div class="text_blod"><span>时间：</span>2017/10/20 00:00:00 - 2017/10/20 08:35:00</div>
+        <div class="content_one"></div>
+        <div class="scroll">
+            <div class="footer">
+                <div class="footer_left">
+                    <div>共1条</div>
+                    <div>每页<input type="text" value="50">条 </div>
+                    <div>第<input type="text" value="1">/1页</div>
+                </div>
+                <div class="footer_right">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination" style="margin: 5px">
+                            <li><a href="#" style="margin-right: 10px;width: 45px;color: #007fff;"><span>&lt</span></a></li>
+                            <li><a href="#" style="margin-right: 10px;width: 45px;color: #007fff;"><span>&gt</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

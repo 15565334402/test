@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../shenku_firstpage.css">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../file/awesome/css/font-awesome.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/highcharts/highcharts.js"></script>
+    <title>测点转发</title>
+</head>
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body,.right_page
+    {
+        width: 100%;
+        height: 100%;
+    }
+    .right_menu{
+        position: absolute;
+        top:0;
+        left:0;
+        bottom: 0;
+        width: 12%;
+        height: 904px;
+        background-color: #e7e7e7;
+    }
+    .tree{
+        font-weight: 700;
+        font-size: 16px;
+        padding: 10px;
+    }
+    .treeview{
+        width: 100%;
+        height: 99.5%;
+        margin-top: 6px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+    }
+    .tree i{
+        padding-left: 80px;
+    }
+    .right_menu_down{
+        width: 100%;
+        line-height: 30px;
+    }
+    .tab-nav,.all{
+        list-style: none;
+        width: 100%;
+        line-height: 30px;
+    }
+    .tab-nav{
+        display: none;
+    }
+    .tab-nav li{
+        list-style: none;
+        height: 30px;
+        width: 100%;
+        line-height: 30px;
+    }
+    li.all a,.tab-nav a{
+        height: 100%;
+        width: 100%;
+        color: #000000;
+        padding-left: 20%;
+        display: block;
+    }
+    .tab-nav a{
+        padding-left: 40%;
+    }
+    a:hover{
+        background-color: #adadad;
+        color: #2e6da4;
+    }
+    .right_content{
+        position: absolute;
+        top:0;
+        left:12%;
+        bottom: 0;
+        width: 88%;
+        height: 904px;
+        background-color: #e7e7e7;
+    }
+    .right_content .serch_info{
+        height: 50px;
+    }
+    .right_content .serch_info nav{
+        float: left;
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 34px;
+    }
+    .right_content .serch_info nav ul{
+        margin: 0;
+        padding: 0;
+    }
+    .right_content .input-group{
+        float: left;
+        margin-top: 5px;
+        margin-left: 20px;
+        width: 300px;
+    }
+    .right_content i{
+        color:#66afe9;
+    }
+    .right_content .search_tab{
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 820px;
+        width: 100%;
+    }
+    .right_content .search_tab table{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 86px;
+    }
+    .right_content .search_foot{
+        margin-top: 5px;
+        margin-left: 20px;
+        height: 30px;
+    }
+    .tab{
+        width: 99.3%;
+        height: 90.5%;
+        margin-left: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+    .tab1,.tab2{
+        width: 100%;
+        height: 100%;
+    }
+    .tab2{
+        display: none;
+    }
+    .table-bordered>thead>tr>th{
+        background-color: #d9dee2;
+        border: 1px solid #ccc;
+    }
+   tbody{
+       background-color: #fff;
+   }
+    .right_content .search_foot span{
+        float: left;
+    }
+    .right_content .search_foot span input{
+        width: 50px;
+    }
+    .right_content .search_foot ul{
+        float: right;
+        margin: 0;
+        padding: 0;
+        height: 20px;
+        margin-right: 40px;
+    }
+    .search_foot ul li a{
+        height: 20px;
+        line-height: 30px;
+        width: 40px;
+    }
+    .search_foot ul li a span{
+        margin-top: -12px;
+    }
+</style>
+<body>
+<div class="right_page">
+    <div class="right_menu">
+        <div class="treeview">
+            <ul class="right_menu_down" style="background-color: #d9dee2">
+                <li class="all"><a>服务器列表<i class="fa fa-angle-double-left"></i></a>
+                    <ul class="tab-nav">
+                        <li cls="tab1"><a>新服务器1</a></li>
+                        <li cls="tab2"><a>新服务器2</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right_content">
+        <div class="serch_info">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li><a href="#"><i class="fa fa-plus" title="添加"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-pencil" title="修改"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-trash" title="删除"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-exchange" title="交换"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-upload" title="导出"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-download" title="导入"></i> </a></li>
+                </ul>
+            </nav>
+            <div class="input-group">
+                           <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-list"></i> </button>
+                           </span>
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                           </span>
+            </div>
+        </div>
+        <div class="tab">
+            <div class="tab1">
+                <table class="table table-bordered tab-active">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>发送方点标签</th>
+                        <th>发送方点名称</th>
+                        <th>接受方点标签</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tab2">
+                <table class="table table-bordered tab-active">
+                    <thead>
+                   <tr>
+                       <th><input type="checkbox"></th>
+                       <th>发送方点标签</th>
+                       <th>发送方点名称</th>
+                       <th>接受方点标签</th>
+                   </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Test2017071131</td>
+                        <td>Test2017071131</td>
+                        <td>Test2017071131</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>s1.AI00000002</td>
+                        <td>s1.AI00000002</td>
+                        <td>s1.AI00000002</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>s1.AI00000003</td>
+                        <td>s1.AI00000003</td>
+                        <td>s1.AI00000003</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>s1.AI00000004</td>
+                        <td>s1.AI00000004</td>
+                        <td>s1.AI00000004</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>s1.AI00000005</td>
+                        <td>s1.AI00000005</td>
+                        <td>s1.AI00000005</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="search_foot">
+            <span>全部</span>
+            <span>共15342行</span>
+            <span>每页<input value="50">条</span>
+            <span>第<input value="1">/307页</span>
+            <ul class="pagination">
+                <li>
+                    <a href="javascript:void(0)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        init_right_menu();
+        init_exchange_tab();
+    });
+    function init_right_menu(e) {
+        $(".all a").on("click",function () {
+          $(this).next().toggle();
+        })
+    }
+    function  init_exchange_tab() {
+        $(".tab-nav li").on("click",function () {
+            var _cls=$(this).attr("cls");
+            var _thatdiv=$("."+_cls);
+            _thatdiv.show().siblings().hide();
+        })
+    }
+</script>
+</body>
+</html>

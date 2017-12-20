@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../shenku_firstpage.css">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../file/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../file/jqueryUI/jquery-ui.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/jqueryUI/jquery-ui.min.js"></script>
+    <title>测点管理</title>
+</head>
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body,.right_page
+    {
+        width: 100%;
+        height: 100%;
+    }
+    .right_menu{
+        position: absolute;
+        top:0;
+        left:0;
+        bottom: 0;
+        width: 12%;
+        height: 904px;
+        background-color: #e7e7e7;
+    }
+    .treeview{
+        width: 100%;
+        height: 99.5%;
+        margin-top: 6px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+    }
+    .tree{
+        font-weight: 700;
+        font-size: 16px;
+        padding: 10px;
+        background-color: #d9dee2;
+    }
+    .tree i{
+        padding-left: 80px;
+    }
+    .right_menu_down>li{
+        list-style: none;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 25px;
+    }
+    .all li{
+        list-style: none;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 25px;
+        display: none;
+    }
+    .right_content{
+        position: absolute;
+        top:0;
+        left:12%;
+        bottom: 0;
+        width: 88%;
+        height: 904px;
+        background-color: #e7e7e7;
+    }
+    .right_content .serch_info nav{
+        float: left;
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 34px;
+    }
+    .right_content .serch_info nav ul{
+        margin: 0;
+        padding: 0;
+    }
+    .right_content .input-group{
+        float: left;
+        margin-top: 5px;
+        margin-left: 20px;
+        width: 300px;
+    }
+    .right_content i{
+        color:#66afe9;
+    }
+    .add_tabs{
+        list-style: none;
+        width: 120px;
+        height: 180px;
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+        box-shadow: 0 3px 3px 3px #adadad;
+        position: absolute;
+        top:35px;
+        left: 30px;
+        z-index: 10;
+        display: none;
+    }
+    .add_tabs>li{
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+    .add_tabs>li>a{
+        width: 100%;
+        height: 100%;
+        display: block;
+        color: #222222;
+    }
+    .add_tabs>li>a:hover{
+        text-decoration: none;
+        background-color: #2e6da4;
+        color: #ffffff;
+    }
+    .left_input{
+        float: left;
+        padding-left: 10px;
+        padding-right: 30px;
+    }
+    .text{
+        margin-top: 10px;
+        padding-right: 10px;
+        float: left;
+    }
+    .input{
+        margin-top: 10px;
+        float: right;
+    }
+    .left_add_tabs_info{
+        height: 40px;
+    }
+    .clear{
+        clear: both;
+    }
+    .save{
+        position: absolute;
+        right: 40px;
+        bottom: 10px;
+        background-color: #007fff;
+        color: #ffffff;
+    }
+    .ui-widget-header{
+        background-color: #122b40;
+        color: #ffffff;
+    }
+    .ui-widget-content{
+        border: none;
+    }
+    .ui-widget.ui-widget-content{
+        box-shadow: 2px 2px 2px 2px rgba(216,216,216,0.5);
+    }
+    .input1{
+        float: left;
+        width: 73px;
+        margin-top: 10px;
+        margin-left: 7px;
+    }
+    .input2{
+        float: right;
+        width: 73px;
+        margin-top: -30px;
+    }
+    .text1{
+        padding-top: 10px;
+        margin-left: 10px;
+    }
+    .checkbox{
+        float: left;
+        position: absolute;
+        top:17px;
+        right: 150px;
+    }
+    #unit-button,#kind-button,#show-button{
+        width: 12.5em;
+        height: 25px;
+    }
+    #unit-menu{
+        height: 150px;
+    }
+    #kind-button,#show-button{
+        margin-top: 10px;
+        margin-left: 5px;
+    }
+    #input2-button,#input3-button{
+        width: 6em;
+        height: 25px;
+        margin: 10px 10px;
+    }
+    span{
+        font-size: 12px;
+        font-family: 新宋体;
+    }
+    li.ui-menu-item{
+        height: 18px;
+    }
+    .ui-menu-item-wrapper{
+        font-size: 12px;
+        font-family: 新宋体;
+        height: 18px;
+    }
+    .right_content .search_tab{
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 820px;
+        width: 100%;
+    }
+    .right_content .search_tab table{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    .right_content .search_foot{
+        margin-top: 5px;
+        margin-left: 20px;
+        height: 30px;
+    }
+    .right_content .search_foot span{
+        float: left;
+    }
+    .right_content .search_foot span input{
+        width: 50px;
+    }
+    .right_content .search_foot ul{
+        float: right;
+        padding: 0;
+        height: 20px;
+        margin-right: 40px;
+    }
+    .search_foot ul li a{
+        height: 20px;
+        line-height: 30px;
+        width: 40px;
+    }
+    .search_foot ul li a span{
+        margin-top: -12px;
+    }
+.add_tabs1,.add_tabs2{
+       display: none;
+    }
+    .ui-dialog-buttonset .ui-button{background-color: #007fff;color: #fff;font-weight: bold;}
+    .add_tabs input{margin-right: 5px;}
+</style>
+<body>
+<div class="right_page">
+    <div class="right_menu">
+        <div class="treeview">
+            <div class="tree">设备树
+                <i class="fa fa-angle-double-left"></i>
+            </div>
+            <ul class="right_menu_down" style="background-color: #ddd">
+                <li class="all">全部
+                    <ul>
+                        <li>test1</li>
+                        <li>大兴电站</li>
+                        <li>淮安电站</li>
+                        <li>集团参数</li>
+                        <li><未分类></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right_content">
+        <div class="serch_info">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li><a href="#"><i class="fa fa-plus" title="添加"></i> </a>
+                         <ul class="add_tabs">
+                             <li cls="add_tabs1"><a>输入模拟量</a></li>
+                             <li cls="add_tabs2"><a>输入开关量</a></li>
+                             <li cls="add_tabs1"><a>计算模拟量</a></li>
+                             <li cls="add_tabs2"><a>计算开关量</a></li>
+                             <li cls="add_tabs1"><a>输入模拟量</a></li>
+                             <li cls="add_tabs2"><a>输出开关量</a></li>
+                         </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-pencil" title="修改"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-trash" title="删除"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-exchange" title="交换"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-upload" title="导出"></i> </a></li>
+                    <li><a href="#"><i class="fa fa-download" title="导入"></i> </a></li>
+                </ul>
+            </nav>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-list"></i> </button>
+                    <ul class="add_tabs">
+                             <li><a><input type="checkbox" checked><span>输入模拟量</span></a></li>
+                             <li><a><input type="checkbox" checked><span>输入开关量</span></a></li>
+                             <li><a><input type="checkbox" checked><span>计算模拟量</span></a></li>
+                             <li><a><input type="checkbox" checked><span>计算开关量</span></a></li>
+                             <li><a><input type="checkbox" checked><span>输入模拟量</span></a></li>
+                             <li><a><input type="checkbox" checked><span>输出开关量</span></a></li>
+                         </ul>
+                </span>
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="dialog">
+            <div class="add_tabs1">
+                <div class="left_input">
+                    <div class="left_add_tabs_info">
+                        <p class="text">[标  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp签]</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[采集 &nbsp &nbsp标签]</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[点 &nbsp &nbsp名 &nbsp &nbsp称]</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[别 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp名]</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[量 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp程]</p>
+                        <input class="input1" type="text" value="0">
+                        <p class="text1">~</p>
+                        <input class="input2" type="text" value="1000">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[单 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp位]</p>
+                        <div class="input">
+                            <select name="unit" id="unit">
+                                <option selected="selected">克（g）</option>
+                                <option>公斤（kg）</option>
+                                <option>吨（T）</option>
+                                <option>毫米（mm）</option>
+                                <option>厘米（cm）</option>
+                                <option>米（m）</option>
+                                <option>秒（s）</option>
+                                <option>米/秒（m/s）</option>
+                                <option>吨/秒（t/s）</option>
+                                <option>吨/小时（t/h）</option>
+                                <option>方/秒（m³/s）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[值 &nbsp &nbsp类 &nbsp &nbsp型]</p>
+                        <div class="kind">
+                            <select name="kind" id="kind">
+                                <option>微整数（8位）</option>
+                                <option>无符号微整数（8位）</option>
+                                <option>短整数（16位）</option>
+                                <option>无符号短整数（16位）</option>
+                                <option>整数（32位）</option>
+                                <option>无符号整数（32位）</option>
+                                <option>长整数（64位）</option>
+                                <option>无符号长整数（64位）</option>
+                                <option selected="selected">单精度浮点数（32位）</option>
+                                <option>双精度浮点数（64位）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[显示 &nbsp &nbsp精度]</p>
+                        <div class="show">
+                            <select name="show" id="show">
+                                <option>0位小数</option>
+                                <option>1位小数</option>
+                                <option selected="selected">2位小数</option>
+                                <option>3位小数</option>
+                                <option>4位小数</option>
+                                <option>5位小数</option>
+                                <option>6位小数</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[时间 &nbsp &nbsp精度]</p>
+                        <input class="input1" type="text" value="1">
+                        <select name="input2" id="input2">
+                            <option>毫秒</option>
+                            <option selected="selected">秒钟</option>
+                            <option>分钟</option>
+                            <option>小时</option>
+                        </select>
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[死区 &nbsp &nbsp压缩]</p>
+                        <input class="input" type="text" value="0">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[旋转门压缩]</p>
+                        <input class="input" type="text" value="0">
+                    </div>
+                </div>
+                <div class="right_input">
+                    <div class="left_add_tabs_info">
+                        <p class="text">[报 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp警]</p>
+                        <input class="checkbox" type="checkbox">
+                    </div>
+                </div>
+                <button class="btn save">保存</button>
+            </div>
+            <div class="add_tabs2">
+                <div class="left_input">
+                    <div class="left_add_tabs_info">
+                        <p class="text">[标  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp签]</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[采集 &nbsp &nbsp标签]</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[点 &nbsp &nbsp名 &nbsp &nbsp称]</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[别 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp名]</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[时间 &nbsp &nbsp精度]</p>
+                        <input class="input1" type="text" value="1">
+                        <select name="input3" id="input3">
+                            <option>毫秒</option>
+                            <option selected="selected">秒钟</option>
+                            <option>分钟</option>
+                            <option>小时</option>
+                        </select>
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[0 &nbsp &nbsp描 &nbsp &nbsp述]</p>
+                        <input class="input" type="text" value="0">
+                    </div>
+                    <div class="left_add_tabs_info">
+                        <p class="text">[1 &nbsp &nbsp描 &nbsp &nbsp述]</p>
+                        <input class="input" type="text" value="1">
+                    </div>
+                </div>
+                <div class="right_input">
+                    <div class="left_add_tabs_info">
+                        <p class="text">[报 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp警]</p>
+                        <input class="checkbox" type="checkbox">
+                    </div>
+                </div>
+                <button class="btn save">保存</button>
+            </div>
+        </div>
+        <iframe frameborder="0" class="search_tab" src="../shenku_data_tab.html"></iframe>
+    </div>
+</div>
+<script>
+    $(function () {
+        init_right_menu();
+        init_dialog();
+        init_select();
+        init_add_menu();
+        init_revise();
+        init_delet();
+    });
+    function init_right_menu() {
+        $(".all").on("click",function () {
+           $(".all li").toggle()
+        })
+    }
+    function init_add_menu() {
+        $(".pagination>li>a").on("click",function () {
+            $(this).next().toggle();
+        });
+        $(".fa-list").on("click",function () {
+            $(this).parent().next().toggle();
+        })
+    }
+    function init_dialog() {
+        $(".add_tabs li").on("click",function () {
+            var _cls=$(this).attr("cls");
+            var _text=$(this).find("a").text();
+            $("."+_cls).dialog({
+                width : "600",
+                title:"新增测点-"+_text,
+                modal:true
+            });
+        });
+    }
+    function init_select() {
+        $( "#unit" ).selectmenu() ;
+        $( "#kind" ).selectmenu();
+        $( "#input2" ).selectmenu();
+        $( "#input3" ).selectmenu();
+        $( "#show" ).selectmenu();
+    }
+    function init_revise() {
+        var _div = "<div id='revise' title='信息' style='display: none;'><p></p></div>";
+        $("body").append(_div);
+        if($("tbody input").prop("checked",true).length==0){
+            $("#revise p").html("请至少选择一行");
+            $(".fa-pencil").on("click",function () {
+                $("#revise").dialog({
+                    modal:true,
+                    buttons: {
+                        "确定": function() {
+                            $( this ).dialog( "close" );
+                        },
+                        "关闭": function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                })
+            })
+        }else {
+            $(".fa-pencil").on("click",function () {
+                $(".add_tabs1").dialog({
+                    modal:true
+                })
+            })
+        }
+
+    }
+    function init_delet() {
+        var _Div = "<div id='delet' title='删除测点' style='display: none;'><p>确认要删除所选测点吗？</p>" +
+            "<form style='padding-left: 15px;'>" +
+            "<input type='radio' name='delet' value='移至未分类' checked>移至未分类 <br><input type='radio' name='delet' value='彻底删除'>彻底删除 " +
+            "</form> " +
+            "</div>";
+        $("body").append(_Div);
+        $(".fa-trash").on("click",function () {
+            $("#delet").dialog({
+                modal:true,
+                buttons: {
+                    "确定": function() {
+                        $( this ).dialog( "close" );
+                    },
+                    "关闭": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            })
+        })
+    }
+</script>
+</body>
+</html>

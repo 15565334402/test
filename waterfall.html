@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>瀑布流布局</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #main { position: relative; }
+    .box {
+        padding: 15px 0 0 15px;
+        float: left;
+    }
+    .pic {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #ccc;
+    }
+    .pic img {
+        width: 165px;
+        height: auto;
+    }
+</style>
+<body>
+<h1 style="margin:150px auto 50px auto; text-align:center;">jQuery无限滚动加载图片瀑布流</h1>
+<div id="main">
+    <div class="box">
+        <div class="pic"> <img src="../image/images/0.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/1.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/2.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/3.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/4.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/5.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/6.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/7.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/8.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/9.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/10.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/11.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/12.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/13.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/14.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/15.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/16.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/17.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/18.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/19.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/20.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/21.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/22.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/23.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/24.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/25.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/26.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/27.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/28.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/29.jpg"> </div>
+    </div>
+    <div class="box">
+        <div class="pic"> <img src="../image/images/30.jpg"> </div>
+    </div>
+</div>
+<script src="../file/jquery-3.2.1.min.js"></script>
+<script>
+    $(window).on('load',function(){
+        waterFall();
+        var dataInt={"data":[{"src":"0.jpg"},{"src":"1.jpg"},{"src":"2.jpg"},{"src":"3.jpg"}]};
+        $(window).on('scroll',function(){
+            if(checkScrollSlide()){
+                $.each(dataInt.data,function(key,value){
+                    var oBox=$('<div>').addClass('box').appendTo($('#main'));
+                    var oPic=$('<div>').addClass('pic').appendTo(oBox);
+                    $('<img>').attr('src','../image/images/'+$(value).attr('src')).appendTo(oPic);
+                });
+                waterFall();
+            }
+        });
+    });
+    function waterFall() {
+        var $boxs=$('#main>div');
+        var w=$boxs.eq(0).outerWidth();
+        var cols=Math.floor($(window).width()/w);
+        $("#main").width(w*cols).css('margin','0 auto');
+        var hArr=[];
+        $boxs.each(function(index,value){
+            var h=$boxs.eq(index).outerHeight();
+            if(index<cols){
+                hArr.push(h);
+            }else {
+                minH=Math.min.apply(null,hArr);
+                var minHeightIndex=$.inArray(minH,hArr);
+                 console.log(value);
+                $(value).css({
+                    'position':'absolute',
+                    'top':minH+'px',
+                    'left':minHeightIndex*w+'px'
+                });
+                hArr[minHeightIndex]+=$boxs.eq(index).outerHeight();
+            }
+        });
+        // console.log(hArr);
+    }
+    function checkScrollSlide() {
+        var $lastBox=$('#main>div').last();
+        var lastBoxDis=$lastBox.offset().top+Math.floor($lastBox.outerHeight()/2);
+        var scrollTop=$(window).scrollTop();
+        var documentH=$(window).height();
+        return (lastBoxDis<scrollTop+documentH)?true:false;
+    }
+</script>
+</body>
+</html>
+

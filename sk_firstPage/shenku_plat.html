@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/highcharts/highcharts.js"></script>
+    <title>平台情况</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body,.right_page
+    {
+        width: 100%;
+        height: 100%;
+    }
+    .content1,.content2{
+        width: 98%;
+        height: 46.5%;
+        margin: 20px 20px;
+        border: 1px solid #dddddd;
+        border-radius: 10px;
+    }
+    .head{
+        width: 100%;
+        height: 7%;
+        background-color: #122b40;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .head .head_data{
+        float:left;
+        color: #ffffff;
+        padding: 5px 10px;
+    }
+    #one,#two{
+        float:right;
+        padding-right: 10px;
+        padding-top: 5px;
+    }
+    .head a{
+        color: #fff;
+    }
+    .active{
+       color: #449d44;
+    }
+    .clear{
+        clear: both;
+    }
+    .form{
+        width: 98.7%;
+        height: 86%;
+        margin: 10px 10px 15px 10px;
+    }
+    #container1,#container2,#container3,#container4,#container5, #container6,#container7,#container8{
+       float: left;
+       margin-left: 5%;
+    }
+   .highcharts-subtitle{
+        font-size: 28px;
+    }
+    .content2 .form{
+        border: 1px solid #cccccc;
+    }
+    .table-striped{
+        background-color: #dddddd;
+    }
+</style>
+<body>
+<div class="right_page">
+    <div class="content1">
+        <div class="head">
+            <div class="head_data">性能监测参数</div>
+            <div id="two"><a tab="two" href="#">趋势图</a></div>
+            <div id="one"><a tab="one" href="#">占比率</a></div>
+        </div>
+        <div class="clear"></div>
+        <div class="form">
+            <div class="one">
+                <div id="container1"></div>
+                <div id="container2"></div>
+                <div id="container3"></div>
+                <div id="container4"></div>
+                <div id="container5"></div>
+                <div id="container6"></div>
+                <div id="container7"></div>
+                <div id="container8"></div>
+            </div>
+            <div class="two">
+                <div class="container1"></div>
+                <div class="container2"></div>
+                <div class="container3"></div>
+                <div class="container4"></div>
+                <div class="container5"></div>
+                <div class="container6"></div>
+                <div class="container7"></div>
+                <div class="container8"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content2">
+        <div class="head">
+            <div class="head_data">数据通信状态</div>
+        </div>
+        <div class="form">
+            <table class="table">
+                <tr class="table-striped">
+                    <th>数据源</th>
+                    <th>最后更新时间</th>
+                    <th>数据状态</th>
+                </tr>
+                <tr>
+                    <td>192.168.10.122</td>
+                    <td>2017-07-07 15:18:25</td>
+                    <td  style="color: darkred">通信异常</td>
+                </tr>
+                <tr>
+                    <td>192.168.10.32</td>
+                    <td>2017-07-07 01:32:00</td>
+                    <td style="color: darkred">通信异常</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    /******表格一****/
+   $(function () {
+     $("#container1") .highcharts({
+         chart: {
+            type: 'pie',
+             backgroundColor:'#cccccc',
+             borderRadius:'5',
+             borderColor:'#adadad',
+             borderWidth:'2',
+             width:'300',
+             height:'180',
+             marginTop:'0'
+      },
+       title:{
+         text:"硬盘使用率",
+           verticalAlign:'bottom',
+           style:{
+             color:'#222222',
+              fontSize:'16'
+           },
+           floating: 'true',
+           align: 'center',
+           y: 0
+           },
+         credits: {
+             enabled: false
+         },
+       plotOptions: {
+           pie: {
+               size:120,//图表直径大小
+                   borderColor:null,
+                   dataLabels: {
+                   distance:-50,
+                     formatter:function(){
+                    if(this.point.name == "已使用")
+                           return "";
+                      else
+                      return this.percentage.toFixed(1)+"%";
+                      },
+                  style:{
+                      fontSize:"24px",
+                      color:'#449d44'
+                      }
+                   },
+               innerSize:'83%',
+                   colors: [
+                   '#999999',
+                   '#449d44'
+                  ]
+               }
+           },
+       tooltip:{
+          enabled:false
+         },
+     series: [{
+           data: [
+           ['已使用',   125],
+           ['未使用',   3.3]
+          ]
+       }]
+      },function(chart){
+           chart.renderer.circle(150, 81, 35).attr({
+               fill: '#ffffff',
+              stroke: 'white',
+              'stroke-width': 10
+           }).add();
+     })
+   });
+    /*****表格二****/
+    $(function () {
+        $("#container2") .highcharts({
+            chart: {
+                type: 'pie',
+                backgroundColor:'#cccccc',
+                borderRadius:'5',
+                borderColor:'#adadad',
+                borderWidth:'2',
+                width:'300',
+                height:'180',
+                marginTop:'0'
+            },
+            title:{
+                text:"内存使用率",
+                verticalAlign:'bottom',
+                style:{
+                    color:'#222222',
+                    fontSize:'16'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    size:120,//图表直径大小
+                    borderColor:null,
+                    dataLabels: {
+                        distance:-50,
+                        formatter:function(){
+                            if(this.point.name == "已使用")
+                                return "";
+                            else
+                                return this.percentage.toFixed(1)+"%";
+                        },
+                        style:{
+                            fontSize:"24px",
+                            color:'#449d44'
+                        }
+                    },
+                    innerSize:'83%',
+                    colors: [
+                        '#999999',
+                        '#449d44'
+                    ]
+                }
+            },
+            tooltip:{
+                enabled:false
+            },
+            series: [{
+                data: [
+                    ['已使用',   80],
+                    ['未使用',   20]
+                ]
+            }]
+        },function(chart){
+            chart.renderer.circle(150,81, 35).attr({
+                fill: '#ffffff',
+                stroke: 'white',
+                'stroke-width': 10
+            }).add();
+        })
+    });
+    /***表格三******/
+    $(function () {
+        $("#container3") .highcharts({
+            chart: {
+                type: 'pie',
+                backgroundColor:'#cccccc',
+                borderRadius:'5',
+                borderColor:'#adadad',
+                borderWidth:'2',
+                width:'300',
+                height:'180',
+                marginTop:'0'
+            },
+            title:{
+                text:"CUP使用率",
+                verticalAlign:'bottom',
+                style:{
+                    color:'#222222',
+                    fontSize:'16'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    size:120,//图表直径大小
+                    borderColor:null,
+                    dataLabels: {
+                        distance:-50,
+                        formatter:function(){
+                            if(this.point.name == "已使用")
+                                return "";
+                            else
+                                return this.percentage.toFixed(1)+"%";
+                        },
+                        style:{
+                            fontSize:"24px",
+                            color:'#449d44'
+                        }
+                    },
+                    innerSize:'83%',
+                    colors: [
+                        '#999999',
+                        '#449d44'
+                    ]
+                }
+            },
+            tooltip:{
+                enabled:false
+            },
+            series: [{
+                data: [
+                    ['已使用',   125],
+                    ['未使用',   2.3]
+                ]
+            }]
+        },function(chart){
+            chart.renderer.circle(150,81, 35).attr({
+                fill: '#ffffff',
+                stroke: 'white',
+                'stroke-width': 10
+            }).add();
+        })
+    });
+    /*******表格四*****/
+    $(function () {
+        $("#container4") .highcharts({
+            chart: {
+                type: 'pie',
+                backgroundColor:'#cccccc',
+                borderRadius:'5',
+                borderColor:'#adadad',
+                borderWidth:'2',
+                width:'300',
+                height:'180',
+                marginTop:'0'
+            },
+            title:{
+                text:"负载使用率",
+                verticalAlign:'bottom',
+                style:{
+                    color:'#222222',
+                    fontSize:'16'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    size:120,//图表直径大小
+                    borderColor:null,
+                    dataLabels: {
+                        distance:-50,
+                        formatter:function(){
+                            if(this.point.name == "已使用")
+                                return "";
+                            else
+                                return this.percentage.toFixed(1)+"%";
+                        },
+                        style:{
+                            fontSize:"24px",
+                            color:'#449d44'
+                        }
+                    },
+                    innerSize:'83%',
+                    colors: [
+                        '#999999',
+                        '#449d44'
+                    ]
+                }
+            },
+            tooltip:{
+                enabled:false
+            },
+            series: [{
+                data: [
+                    ['已使用',   125],
+                    ['未使用',   8.9]
+                ]
+            }]
+        },function(chart){
+            chart.renderer.circle(150, 81, 35).attr({
+                fill: '#ffffff',
+                stroke: 'white',
+                'stroke-width': 10
+            }).add();
+        })
+    });
+    /****表格五******/
+    $(function () {
+        $("#container5") .highcharts({
+            chart: {
+                type: 'pie',
+                backgroundColor:'#cccccc',
+                borderRadius:'5',
+                borderColor:'#adadad',
+                borderWidth:'2',
+                width:'300',
+                height:'180',
+                marginTop:'0'
+            },
+            title:{
+                text:"测点使用率",
+                verticalAlign:'bottom',
+                style:{
+                    color:'#222222',
+                    fontSize:'16'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    size:120,//图表直径大小
+                    borderColor:null,
+                    dataLabels: {
+                        distance:-65,
+                        formatter:function(){
+                            if(this.point.name == "已使用")
+                                return "";
+                            else
+                                return this.percentage.toFixed(1)+"%";
+                        },
+                        style:{
+                            fontSize:"24px",
+                            color:'red'
+                        }
+                    },
+                    innerSize:'83%',
+                    colors: [
+                        '#999999',
+                        'red'
+                    ]
+                }
+            },
+            tooltip:{
+                enabled:false
+            },
+            series: [{
+                data: [
+                    ['已使用',   0],
+                    ['未使用',   100]
+                ]
+            }]
+        },function(chart){
+            chart.renderer.circle(150, 81, 35).attr({
+                fill: '#ffffff',
+                stroke: 'white',
+                'stroke-width': 10
+            }).add();
+        })
+    });
+    /*****表格六*****/
+    $(function () {
+        $("#container6").highcharts({
+            chart: {
+                type: 'pie',
+                backgroundColor: '#cccccc',
+                borderRadius: '5',
+                borderColor: '#adadad',
+                borderWidth: '2',
+                width: '300',
+                height: '180',
+                marginTop: '0'
+            },
+            title: {
+                text: "网络收发数据量",
+                verticalAlign: 'bottom',
+                style: {
+                    color: '#222222',
+                    fontSize: '16'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            },
+            credits: {
+                enabled: false
+            },
+           subtitle: {
+               text: '6.68KBps',
+               verticalAlign: 'middle',
+               style: {
+                   color: 'blue',
+                   fontSize: '28',
+                   fill:'blue'
+               },
+               floating: 'true',
+               align: 'center',
+               y: 0
+           }
+        })
+    });
+    /*****表格七*****/
+    $(function () {
+        $("#container7").highcharts({
+            chart: {
+                type: 'pie',
+                backgroundColor: '#cccccc',
+                borderRadius: '5',
+                borderColor: '#adadad',
+                borderWidth: '2',
+                width: '300',
+                height: '180',
+                marginTop: '0'
+            },
+            title: {
+                text: "读写请求数(TPS)",
+                verticalAlign: 'bottom',
+                style: {
+                    color: '#222222',
+                    fontSize: '16'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            },
+            credits: {
+                enabled: false
+            },
+            subtitle: {
+                text: '1.4',
+                verticalAlign: 'middle',
+                style: {
+                    color: 'blue',
+                    fontSize: '28',
+                    fill:'blue'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            }
+        })
+    });
+    /*****表格八*****/
+    $(function () {
+        $("#container8").highcharts({
+            chart: {
+                type: 'pie',
+                backgroundColor: '#cccccc',
+                borderRadius: '5',
+                borderColor: '#adadad',
+                borderWidth: '2',
+                width: '300',
+                height: '180',
+                marginTop: '0'
+            },
+            title: {
+                text: "磁盘读取数据量",
+                verticalAlign: 'bottom',
+                style: {
+                    color: '#222222',
+                    fontSize: '16'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            },
+            credits: {
+                enabled: false
+            },
+            subtitle: {
+                text: '13.6KBps',
+                verticalAlign: 'middle',
+                style: {
+                    color: 'blue',
+                    fontSize: '28',
+                    fill:'blue'
+                },
+                floating: 'true',
+                align: 'center',
+                y: 0
+            }
+        })
+    });
+</script>
+</body>
+</html>

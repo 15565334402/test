@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../file/layui/css/layui.css">
+    <script src="../file/jquery-3.2.1.min.js"></script>
+    <script src="../file/layui/layui.js"></script>
+    <title>Document</title>
+    <style>
+        .wrap{width: 400px;height: 200px;box-shadow: 3px 3px 3px  #cccccc;position: absolute;top:50%;left: 50%;margin: -100px -200px;background-color: #adadad;}
+       .wrap>div{height: 30px;line-height: 30px;text-align: center;width: 350px;margin: 30px 25px;}
+        input{width: 85%;}
+        .btn{margin-left: 40px;}
+    </style>
+</head>
+<body>
+<!--<div class="wrap">
+    <div class="username">
+        <span>登录名</span>
+        <input type="text" id="userName" >
+    </div>
+    <div class="password">
+        <span> 密码：</span>
+        <input type="password" id="password">
+    </div>
+    <div class="login">
+        <input type="button" id="button" value="登录" class="btn btn-primary">
+    </div>
+</div>-->
+<script>
+//    layui.use(['jquery', 'layer'], function () {
+//        var $ = layui.jquery,//重点处   ,
+//            layer = layui.layer;
+//        $(".btn").on("click", function () {
+//            var tel = $.trim($("#userName").val());
+//            var paw = $.trim($("#password").val());
+//            var Rtel = /^1[3578]\d{9}$/;
+//            var Rpaw = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/;
+//            if (!Rtel.test(tel)) {
+//                layer.msg("用户名不正确！", {icon: "5", time: 1000});
+//                return
+//            }
+//            if (!Rpaw.test(paw)) {
+//                layer.msg("密码不正确！", {icon: "5", time: 1000});
+//                return
+//            }
+//            else {
+//                if (tel == 13243186096 && paw == "a123456") {
+//                    layer.msg("登录成功！！", {icon: "1", time: 1000});
+//                    location.href = "https://www.baidu.com"
+//                } else {
+//                    layer.msg("用户名或者密码不正确！", {icon: "5", time: 1000})
+//                }
+//            }
+//
+//        })
+//    })
+  /**$(function () {
+      var html='';
+      html+="<table>";
+      for(var i=1;i<10;i++){
+          html+="<tr>";
+          for(var j=1;j<=i;j++){
+              html+="<td>"+i+"*"+j+"="+i*j+"</td>";
+          }
+          html+="</tr>";
+      }
+      html+="</table>";
+      document.write(html);
+  })**/
+  /**var arr=[];
+   function test() {
+      for(var i=0;i<10;i++){
+          arr[i]=function () {
+              document.write()
+          }
+      }
+      return arr
+  }
+   test();
+   for (var j = 0;j < 10;j++){
+      arr[j]()
+  }**/
+ /** var input = window.prompt("input");
+  var j = 0,count = 0;
+  for(var i = 0;i<input.length;i++){
+      if(input.charCodeAt(i)<=255){
+          j = 1;
+      }else {
+          j = 2;
+      }
+      count += j;
+  }
+  document.write(count);**///返回字节长度
+/*** function type(target) {
+     var temple = {
+        "[object String]":"string - object",
+        "[object Boolean]":"boolean - object",
+        "[object Number]":"number - object",
+        "[object Object]":"object - object",
+        "[object Array]":"array - object"
+     };
+    var ret = typeof(target);
+    if(target == null){
+        return "null"
+    }else if(ret == "object"){
+      var Str = Object.prototype.toString.call(target);
+            return temple[Str];
+    }else {
+        return ret;
+    }
+ }**/  //typeof 返回值类型
+/**Array.prototype.unique=function () {
+    var obj = {},
+        len=this.length,
+        arr = [];
+    for (var i = 0;i <len;i++){
+        if(!obj[this[i]]){
+            obj[this[i]] = 'abc';
+            arr.push(this[i])
+        }
+    }
+    return arr;
+}**///数组去重
+/**function getViewportOffset() {
+    if (window.innerWidth) {
+        return {
+            w: window.innerWidth,
+            h: window.innerHeight
+        }
+    } else {
+        if (document.compatMode === "BackCompat") {
+            return {
+                w: document.body.clientWidth,
+                h: document.body.clientHeight
+            }
+        } else {
+            return {
+                w: document.documentElement.clientWidth,
+                h: document.documentElement.clientHeight
+            }
+        }
+    }
+}**///获得可视窗口的宽度和高度
+for(i=0;i<10;i++){
+   setTimeout( function B() {
+       console.log(i)
+   },0)
+}
+</script>
+</body>
+</html>

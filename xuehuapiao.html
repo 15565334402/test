@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../file/jquery-3.2.1.min.js"></script>
+    <title></title>
+</head>
+<style>
+    *{padding: 0;margin: 0;}
+    body{background-color: black;overflow: hidden;}
+    .ig img{position: absolute;width: 500px;border-radius: 20px;}
+    #img{position: absolute;top:250px;left: 400px;width: 500px;height: 333px;}
+    #con{position: absolute;top:250px;left:1000px;color:#fff;line-height: 50px;width: 250px;height: 350px;}
+</style>
+<body>
+<div id="img">
+    <div class="ig"><img src="../image/img/item-01.jpg"></div>
+    <div class="ig"><img src="../image/img/item-02.jpg"></div>
+    <div class="ig"><img src="../image/img/item-03.jpg"></div>
+    <div class="ig"><img src="../image/img/item-04.jpg"></div>
+    <div class="ig"><img src="../image/img/item-05.jpg"></div>
+</div>
+<div id="con">
+    <marquee direction="up">
+            我说你是人间的四月天；
+            笑响点亮了四面风；轻灵
+            在春的光艳中交舞着变。
+            你是四月早天里的云烟，
+            黄昏吹着风的软，星子在
+            无意中闪，细雨点洒在花前。
+            那轻，那娉婷，你是，鲜妍。
+            百花的冠冕你戴着，你是
+            天真，庄严，你是夜夜的月圆。
+            雪化后那片鹅黄，你像；新鲜
+            初放芽的绿，你是；柔嫩喜悦
+            水光浮动着你梦期待中白莲。
+            你是一树一树的花开，是燕
+            在梁间呢喃，——你是爱，是暖，
+            是希望，你是人间的四月天！
+    </marquee>
+</div>
+<audio src="" controls="controls"></audio>
+<script>
+$(function () {
+    lunbo();
+    snowflake();
+});
+    function lunbo() {
+        var i = 0;
+        $(".ig").eq(0).show().siblings().hide();
+        setInterval(function () {
+            $(".ig").eq(i).fadeIn(300).siblings().fadeOut(300);
+            i++;
+            if (i==5){
+                i=0
+            }
+        },2000)
+    }
+    function snowflake() {
+        var snowTime = 200;
+        var flake = $("<div class='flake' style='position: absolute;color: #fff;top:-55px'/>").html('&#10052;');
+        var H = $(window).height();
+        var W = $(window).width();
+        setInterval(function () {
+            var starLeft = Math.random()*W;
+            var stopLeft = Math.random()*W;
+            var flakeSize = 5+Math.random()*50;
+            var starOpac = 0.7+Math.random()*0.3;
+            var stopOpac = 0.3+Math.random()*0.3;
+            var snowDownTime = 8000+3000*Math.random();
+            flake.clone().appendTo("body").css({
+                left:starLeft,
+                "font-size":flakeSize,
+                opacity:starOpac
+            }).animate({
+                left:stopLeft,
+                top:H,
+                opacity:stopOpac
+            },snowDownTime,function () {
+                $(this).remove();
+            })
+        },snowTime)
+    }
+</script>
+
+</body>
+</html>

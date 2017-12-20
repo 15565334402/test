@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../file/jquery-3.2.1.min.js"></script>
+    <script src="../file/highcharts/highcharts.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="container" style="min-width:400px;height:400px;"></div>
+<script type="text/javascript">
+    $(function () {
+        $("#container").highcharts({
+            chart:{
+               zoomType:'x' ,
+                backgroundColor:'#353F4B',
+                plotBorderWidtn:1,
+                margin:[5,5,25,5],
+                events:{
+                   selection:function (event) {...},
+                   click:function (e) {...},
+                    load:function () {...}
+                }
+            },
+            title:{
+                text:_range,
+                align:"left",
+                x:0,
+                style:{"color":"#ccc","font-size":"1em","font-weight":"700"}
+            },
+            xAxis:{
+                labels:{...},
+                 type:'datetime',
+                 crosshair:page_global.cross_type.crosshair.xcross,
+                  tickWidth:0,
+            gridLineWidth:1,
+            gridLineDashStyle:"Dot",
+            gridLineColor:"#666666",
+            plotLines:page_global.plotLine_data.xAxis,
+            min:page_global.time_range.min,
+            max:page_global.time_range.max,
+            },
+            turboThreshold:0,
+            plotOptions:{series:{
+                allowPointSelect:turboThreshold:0,marker:page_global.render_marker,animation:false,lineWidth:page_global.render_lineWidth,radius:1
+        }
+        },
+        point:{
+                events:{
+                    click:function () {...}
+                }
+        },
+        });
+        legend:{enabled:false},
+        tooltip:{...},
+        yAxis:{...},
+        series:series
+    });
+
+</script>
+</body>
+</html>

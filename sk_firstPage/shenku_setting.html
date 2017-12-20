@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../shenku_firstpage.css">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../file/jqueryUI/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../file/awesome/css/font-awesome.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/jqueryUI/jquery-ui.min.js"></script>
+    <script src="../../file/highcharts/highcharts.js"></script>
+    <title>系统设定</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    html,body{width: 98.3%;height:900px;background-color: #e7e7e7}
+    .setting_content{width:100%;margin: 30px;}
+    .settings{width: 100%;height: 200px;background-color: #fff;margin-bottom: 25px;}
+    .settings:last-child{margin-bottom: 0;}
+    .header{background-color: #485666;border-radius: 5px 5px 0 0;}
+    .header>span{color: #fff;display: inline-block;font-weight: bold;padding: 10px;}
+    .aside{padding: 15px 10px;width: 100%;}
+    .content1 span.text{font-weight: bold;}
+    .input{width: 40px;}
+    .content1>div,.double>div{margin-bottom: 10px;}
+    .double{padding-left: 20px;display: none;}
+    .double .right_input{margin-left: 10%;}
+    .btn{margin-left: 40px;padding: 2px 5px;font-weight: bold;}
+    .ui-widget-header{background-color: #485666;color: #fff;}
+    .ui-widget-content{border: 0;}
+    .ui-dialog-buttonset .ui-button{background-color: #007fff;color: #fff;font-weight: bold;}
+</style>
+<body>
+<div class="setting_content">
+    <section class="settings">
+        <div class="header">
+            <span>硬盘存储超限报警</span>
+        </div>
+       <div class="aside">
+          <div class="content1">
+              <span class="text">磁盘报警上限：</span>
+              <input type="text" value="80" class="input">
+              <span>%</span>
+          </div>
+       </div>
+    </section>
+    <section class="settings">
+        <div class="header">
+            <span>硬盘存储上限</span>
+        </div>
+        <div class="aside">
+            <div class="content1">
+                <div>
+                    <span class="text">磁盘自动清理阈值：</span>
+                    <input type="text" value="90" class="input">
+                    <span>%</span>
+                </div>
+                <div>
+                    <span class="text">到达上限自动清理</span>
+                    <input type="checkbox">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="settings">
+        <div class="header">
+            <span>运行模式</span>
+        </div>
+        <div class="aside">
+            <div class="content1">
+               <form>
+                   <input type="radio" checked="checked">
+                   <span class="text">单机模式</span>
+                   <br/><br/>
+                    <input class="text" type="radio" name="checked">
+                    <span class="text">双机模式</span>
+               </form>
+                <div class="double">
+                    <div>
+                        <span>
+                             <span>同步本机内网IP：</span>
+                             <input type="text">
+                        </span>
+                        <span class="right_input">
+                             <span>启动优先级：</span>
+                             <input type="text" value="10">
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                              <span>同步对机内网IP：</span>
+                              <input type="text">
+                        </span>
+                        <span class="right_input">
+                              <span>启动 &nbsp; 延迟：</span>
+                              <input type="text" value="10">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="settings">
+        <div class="header">
+            <span class="text">共享存储设定</span>
+        </div>
+        <div class="aside">
+            <div class="content1">
+                <div>
+                    <span class="text">NAS&nbsp控载路径：</span>
+                    <input type="text" class="path">
+                </div>
+                <div>
+                    <span class="text">NAS&nbsp用&nbsp户&nbsp名&nbsp：</span>
+                    <input type="text" value="nasuser">
+                </div>
+                <div>
+                    <span class="text">密 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 码 &nbsp：</span>
+                    <input type="text" value="gom123GOM">
+                    <input class="btn btn-primary" type="button" value="设定">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div id="dialog" title="信息">
+    <p></p>
+</div>
+<script>
+    $(function () {
+        init_modal_exchange();
+        init_dialog();
+    })
+    function  init_modal_exchange() {
+        $("input[type='radio']").on("click",function () {
+            $(this).prop("checked",true)
+            $(this).siblings("input").prop("checked",false);
+            if($("input[name='checked']").prop("checked")==true){
+                $(".double").css("display","block");
+            }else {
+                $(".double").css("display","none");
+            }
+        })
+    }
+    function init_dialog() {
+        $("input[type='button']").on("click",function () {
+            var val = $(".path").val();
+         if(val == ''){
+             $("#dialog>p").html("NAS控载路径不能为空")
+         }else {
+             $("#dialog>p").html("设定成功")
+         }
+         $("#dialog").dialog({
+             modal:true,
+             buttons: {
+                 "确定": function() {
+                     $( this ).dialog( "close" );
+                 },
+                 "关闭": function() {
+                     $( this ).dialog( "close" );
+                 }
+             }
+         })
+        })
+    }
+</script>
+</body>
+</html>

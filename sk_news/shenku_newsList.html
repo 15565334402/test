@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../shenku_firstpage.css">
+    <link rel="stylesheet" href="../../file/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../file/jqueryUI/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../file/awesome/css/font-awesome.min.css">
+    <script src="../../file/jquery-3.2.1.min.js"></script>
+    <script src="../../file/jqueryUI/jquery-ui.min.js"></script>
+    <script src="../../file/highcharts/highcharts.js"></script>
+    <title>消息列表</title>
+</head>
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body,.right_page
+    {
+        width: 100%;
+        height: 100%;
+    }
+    .right_menu{
+        position: absolute;
+        top:0;
+        left:0;
+        bottom: 0;
+        width: 12%;
+        height: 904px;
+        background-color: #e7e7e7;
+    }
+    .treeview{
+        width: 100%;
+        height: 99.5%;
+        margin-top: 6px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+    }
+    .tree{
+        font-weight: 700;
+        font-size: 16px;
+        padding: 10px;
+        background-color: #d9dee2;
+    }
+    .tree i{
+        padding-left: 80px;
+    }
+    .right_menu_down>li{
+        list-style: none;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 25px;
+    }
+    .all li{
+        list-style: none;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 25px;
+        display: none;
+    }
+    .right_content{
+        position: absolute;
+        top:0;
+        left:12%;
+        bottom: 0;
+        width: 88%;
+        height: 904px;
+        background-color: #e7e7e7;
+    }
+    .right_content .serch_info{
+        height: 50px;
+    }
+    .right_content .select{
+        float: left;
+        margin-top: 5px;
+        margin-left: 20px;
+    }
+    .right_content .select>select{
+        height: 35px;
+        border-radius: 5px;
+    }
+    .time_select{
+        float: left;
+        margin-left: 10px;
+        margin-top: 8px;
+        width: 410px;
+    }
+    .time_select>.one{
+        float: left;
+        height: 30px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+    }
+    .time_select>.two{
+        float: left;
+        height: 30px;
+        width: 200px;
+        margin-left: 10px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+    }
+    .input-group>input{
+        font-weight: bold;
+        color: #8c8c8c;
+    }
+    .input-group{
+        float: left;
+        width: 300px;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+    .right_content i{
+        color:#66afe9;
+    }
+    .right_content .search_tab{
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 820px;
+        width: 100%;
+    }
+    .right_content .search_tab table{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 86px;
+    }
+    .right_content .search_foot{
+        margin-top: 5px;
+        margin-left: 20px;
+        height: 30px;
+    }
+    .tab{
+        width: 99.3%;
+        height: 90.5%;
+        margin-left: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+    .tab1{
+        width: 100%;
+        height: 100%;
+    }
+    .table-bordered>thead>tr>th{
+        background-color: #d9dee2;
+        border: 1px solid #ccc;
+    }
+    tbody{
+        background-color: #fff;
+    }
+    .tab1>.text{
+        position: absolute;
+        top: 50%;
+        left: 48%;
+    }
+    .right_content .search_foot span{
+        float: left;
+    }
+    .right_content .search_foot span input{
+        width: 50px;
+    }
+    .right_content .search_foot ul{
+        float: right;
+        margin: 0;
+        padding: 0;
+        height: 20px;
+        margin-right: 40px;
+    }
+    .search_foot ul li a{
+        height: 20px;
+        line-height: 30px;
+        width: 40px;
+    }
+    .search_foot ul li a span{
+        margin-top: -12px;
+    }
+</style>
+<body>
+<div class="right_page">
+    <div class="right_menu">
+        <div class="treeview">
+            <div class="tree">设备树
+                <i class="fa fa-angle-double-left"></i>
+            </div>
+            <ul class="right_menu_down" style="background-color: #ddd">
+                <li class="all">全部
+                    <ul>
+                        <li>test1</li>
+                        <li>大兴电站</li>
+                        <li>淮安电站</li>
+                        <li>集团参数</li>
+                        <li><未分类></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right_content">
+        <div class="serch_info">
+           <div class="select">
+               <select>
+                   <option>全部</option>
+                   <option>低1报警</option>
+                   <option>低1报警</option>
+                   <option>低1报警</option>
+                   <option>高1报警</option>
+                   <option>高1报警</option>
+                   <option>高1报警</option>
+                   <option>开关变化</option>
+               </select>
+           </div>
+            <div class="time_select">
+                <input class="one" type="text" value="2017/10/18 00:00:00">
+                <input class="two" type="text" value="2017/10/18 11:27:00">
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" value="检索关键字">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="tab">
+            <div class="tab1">
+                <table class="table table-bordered tab-active">
+                    <thead>
+                    <tr>
+                        <th>发生时间</th>
+                        <th>类型</th>
+                        <th>标签</th>
+                        <th>内容</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="text">没有数据</div>
+            </div>
+        </div>
+        <div class="search_foot">
+            <span>全部</span>
+            <span>共15342行</span>
+            <span>每页<input value="50">条</span>
+            <span>第<input value="1">/307页</span>
+            <ul class="pagination">
+                <li>
+                    <a href="javascript:void(0)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".one,.two").datepicker();
+    });
+
+</script>
+</body>
+</html>
