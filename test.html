@@ -151,6 +151,77 @@ for(i=0;i<10;i++){
        console.log(i)
    },0)
 }
+        /****设置页面信息******/
+        _init_setPageInfo:function (_pageInfo) {
+            //console.log(_pageInfo);
+            var _totalRows=_pageInfo.totalRows;                              //总条数
+            var _pageNo=_pageInfo.pageNo;                                   //当前页
+            var _pageCapacity=_pageInfo.pageCapacity;                       //每页多少条
+            var _totalPage=Math.ceil(_totalRows/_pageCapacity);             //总页数
+
+            //验证当前页是否合格
+            if(_pageNo>_totalPage){
+                _pageNo=_totalPage;
+                _pageInfo.pageNo=_totalPage;
+            }
+
+            //console.log(_totalRows,_totalPage,_pageCapacity,_pageNo)
+            //给页面赋值
+            $(".rox-middle-head .rox-report-totalNum").text(_totalRows);
+            $(".rox-footer-pageAddress .rox-footer-pageTotal").text(_totalPage);
+            $(".rox-footer-pageAddress .rox-footer-pageCapacity").val(_pageCapacity);
+            $(".rox-footer-pageAddress .rox-footer-pageNo").val(_pageNo);
+
+        },
+        /******获取页面信息*******/
+        _init_getPageInfo:function () {
+            var pageInfo={};
+            pageInfo["pageNo"]=$(".rox-footer-pageAddress .rox-footer-pageNo").val()-0;   //当前页
+            pageInfo["pageCapacity"]=$(".rox-footer-pageAddress .rox-footer-pageCapacity").val()-0;         //每页条数
+            pageInfo["totalPage"]=$(".rox-footer-pageAddress .rox-footer-pageTotal").text()-0;      //总页数
+            pageInfo["totalRows"]=$(".rox-middle-head .rox-report-totalNum").text()-0;                //总条数
+            return pageInfo;
+        },
+        /******分页查询功能**/
+        _init_changePageInfo:function (type) {
+            var keyword=$("#rox-report-keyword").val();                       //搜索词
+            var _pageNo=1;
+            if(keyword==_init_report_head._keyword){                      //没改变搜索词进行分页搜索，否则重新搜索
+                var _pageInfo=_init_report_footer._init_getPageInfo();    //获取当前分页信息
+                if(type){                                                   //点击上下页及首尾页，否则当前是改变每页条数与当前页
+                    if((type=="start"||type=="prev")&&_pageInfo.pageNo==1)return false;                    //已在首页
+                    if((type=="next"||type=="end")&&_pageInfo.pageNo==_pageInfo.totalPage)return false;    //已在尾页
+                    switch (type){
+                        case "start":                       //首页
+                            _pageInfo.pageNo=1;
+                            break;
+                        case "prev":                        //上一页
+                            _pageInfo.pageNo-=1;
+                            break;
+                        case "next":                        //下一页
+                            _pageInfo.pageNo+=1;
+                            break;
+                        case "end":                         //尾页
+                            _pageInfo.pageNo=_pageInfo.totalPage;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                //检验当前页面信息是否合格
+                if(_pageInfo.pageNo<1)_pageInfo.pageNo=1;
+                if(_pageInfo.pageNo>_pageInfo.totalPage)_pageInfo.pageNo=_pageInfo.totalPage;
+                if(_pageInfo.pageCapacity<1)_pageInfo.pageCapacity=1;
+                _pageInfo.totalPage=Math.ceil(_pageInfo.totalRows/_pageInfo.pageCapacity);
+
+                _init_report_footer._init_setPageInfo(_pageInfo);         //重新设置页面信息
+                _pageNo=_pageInfo.pageNo;                         //当前页传入参数
+
+            }
+            _init_report_head._init_search(_pageNo);                 //搜索
+        }
+    };
 </script>
 </body>
 </html>
