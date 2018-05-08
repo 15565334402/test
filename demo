@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>demo</title>
+<style>
+	#sk-rtdbms-boxContain{width:300px;height:100px;border:1px solid #ccc;overflow:hidden;position:relative;display:inline-block;}
+	.sk-rtdbms-box{height:100px;background:#f00;border:1px solid #111;color:#fff;position:absolute;text-align:center;line-height:100px;font-weight:700;top:0;left:0;}
+</style>
+</head>
+<body onload="_init_box()">
+<button onclick="_init_move('start')">首页</button>
+<button onclick="_init_move('prev')">向左</button>
+<div id="sk-rtdbms-boxContain"></div>
+<button onclick="_init_move('next')">向右</button>
+<button onclick="_init_move('end')">尾页</button>
+</body>
+<script src="jquery.js"></script>
+<script>
+var boxes=[
+	{name:"box1",width:100},
+	{name:"box2",width:120},
+	{name:"box3",width:200},
+	{name:"box4",width:80},
+	{name:"box5",width:110},
+	{name:"box6",width:100},
+	{name:"box7",width:70},
+	{name:"box8",width:60},
+	{name:"box9",width:131},
+	{name:"box10",width:77},
+	{name:"box11",width:150}
+]
+var element=null;
+var type = "left";
+
+var _init_box=function(){
+	var _html="";
+	var _width=0;
+	$.each(boxes,function(i,idata){
+		_html+="<div class='sk-rtdbms-box' style='left:"+_width+"px;width:"+idata.width+"'>"+idata.name+"</div>";
+		_width+=idata.width;
+	});
+
+	$(_html).appendTo("#sk-rtdbms-boxContain");
+	element=$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box:eq(0)");
+}
+
+var _init_move=function(clickType){
+	if(clickType=="prev"){
+		if(type=="left"&&element.prev().length){
+			element=element.prev();
+			var _width=element.width();
+			$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box").each(function(){
+				var _left=$(this).css("left");
+				$(this).animate({"left":(_left.split("px")[0]-0+_width)+"px"});
+			});
+		}else if(type=="right"){
+			var _width=element.width();
+			function _init_width(){
+				if(_width<300){
+					element=element.prev();
+					_width+=element.width();
+					_init_width();
+				}
+			}
+			_init_width();
+			console.log(element,_width);
+			$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box").each(function(){
+				var _left=$(this).css("left");
+				//console.log(_left.split("px")[0]+(_width-300),_left.split("px")[0],(_width-300));
+				$(this).animate({"left":(_left.split("px")[0]-0+(_width-300))+"px"});
+			});
+		}
+		type = "left";
+	}else if(clickType=="next"){
+		if(type=="right"&&element.next().length){
+			element=element.next();
+			var _width=element.width();
+			$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box").each(function(){
+				var _left=$(this).css("left");
+				
+				$(this).animate({"left":(_left.split("px")[0]-_width)+"px"});
+			});
+		}else if(type=="left"){
+			var _width=element.width();
+			//console.log(_width);
+			function _init_width(){
+				//console.log(wd);
+				if(_width<300){
+					element=element.next();
+					_width+=element.width();
+					_init_width();
+				}
+			}
+			_init_width();
+			//console.log(element,_width);
+			$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box").each(function(){
+				var _left=$(this).css("left");
+				$(this).animate({"left":(_left.split("px")[0]-_width+300)+"px"});
+			});
+		}
+		type = "right";
+	}else if(clickType=="start"){
+		type = "left";
+		element=$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box:first");
+		var _leftSpacing=0-element.css("left").split("px")[0];
+		console.log(element.css("left").split("px")[0],_leftSpacing,element)
+		$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box").each(function(){
+			var _left=$(this).css("left");
+			$(this).animate({"left":(_left.split("px")[0]-0+_leftSpacing+"px")});
+		});
+	}else if(clickType=="end"){
+		type = "right";
+		element=$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box:last");
+		var _width = element.width();
+		var _leftSpacing=(300-_width)-element.css("left").split("px")[0];
+		$("#sk-rtdbms-boxContain").find(".sk-rtdbms-box").each(function(){
+			var _left=$(this).css("left");
+			$(this).animate({"left":(_left.split("px")[0]-0+_leftSpacing+"px")});
+		});
+	}
+}
+</script>
+</html>
